@@ -49,7 +49,7 @@
 <div class="container">
     <div class="starter-template">
                                     <div class="panel">
-            <a href="mobiles.html">
+            <a href="/mobiles">
                 <img src="http://internet-shop.tmweb.ru/storage/categories/mobile.jpg">
                 <h2>Мобильные телефоны</h2>
             </a>
@@ -58,7 +58,7 @@
             </p>
         </div>
             <div class="panel">
-            <a href="portable.html">
+            <a href="/portable">
                 <img src="http://internet-shop.tmweb.ru/storage/categories/portable.jpg">
                 <h2>Портативная техника</h2>
             </a>
@@ -67,7 +67,7 @@
             </p>
         </div>
             <div class="panel">
-            <a href="appliances.html">
+            <a href="/appliances">
                 <img src="http://internet-shop.tmweb.ru/storage/categories/appliance.jpg">
                 <h2>Бытовая техника</h2>
             </a>
