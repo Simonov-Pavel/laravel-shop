@@ -28,4 +28,8 @@ class MainController extends Controller
     public function bascet(){
         return view('bascet');
     }
+
+    public function order(){
+        return view('order');
+    }
 }
