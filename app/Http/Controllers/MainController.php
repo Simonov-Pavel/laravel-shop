@@ -13,8 +13,7 @@ class MainController extends Controller
 
     public function categories(){
         $categories = Category::get();
-        dd($categories);
-        return view('categories');
+        return view('categories', compact('categories'));
     }
 
     public function category($category){
