@@ -26,18 +26,16 @@
                             {{$product->name}}
                         </a>
                     </td>
-                    <td><span class="badge">1</span>
+                    <td>
                         <div class="btn-group form-inline">
                             <form action="http://internet-shop.tmweb.ru/basket/remove/2" method="POST">
-                                <button type="submit" class="btn btn-danger" href=""><span
-                                        class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
-                                <input type="hidden" name="_token" value="Au89njmajixRjy3GRhAzqETFIKINQndX9YjsdiUz">                            
+                                <button type="submit" class="btn btn-danger"><span  class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+                                @csrf                           
                             </form>
-                            <form action="http://internet-shop.tmweb.ru/basket/add/2" method="POST">
-                                <button type="submit" class="btn btn-success"
-                                        href=""><span
-                                        class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                                <input type="hidden" name="_token" value="Au89njmajixRjy3GRhAzqETFIKINQndX9YjsdiUz">                            
+                            <span class="badge">1</span>
+                            <form action="{{route('bascet-add', $product)}}" method="POST">
+                                <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                                @csrf                         
                             </form>
                         </div>
                     </td>

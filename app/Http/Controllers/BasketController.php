@@ -29,6 +29,6 @@ class BasketController extends Controller
         }
         $order->products()->attach($productId);
 
-        return view('bascet', compact('order'));
+        return redirect('bascet');
     }
 }
