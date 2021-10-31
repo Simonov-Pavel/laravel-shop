@@ -29,11 +29,5 @@ class MainController extends Controller
         return view('product', compact('product'));
     }
 
-    public function bascet(){
-        return view('bascet');
-    }
-
-    public function order(){
-        return view('order');
-    }
+    
 }
