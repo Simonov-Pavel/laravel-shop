@@ -38,7 +38,9 @@
         </div>
     </form>
     <div class="row">
-    @include('includes.cart-product')
+        @foreach($products as $product)
+            @include('includes.cart-product', compact('product'))
+        @endforeach
     </div>
         <nav>
             <ul class="pagination">

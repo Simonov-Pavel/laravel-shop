@@ -10,7 +10,7 @@ class MainController extends Controller
 {
     public function index(){
         $products = Product::get();
-        return view('welcome');
+        return view('welcome', compact('products'));
     }
 
     public function categories(){
