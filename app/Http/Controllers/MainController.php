@@ -20,12 +20,13 @@ class MainController extends Controller
 
     public function category($code){
         $category = Category::where('code', $code)->first();
-        $products = Product::get();
-        return view('category', compact('category', 'products'));
+        return view('category', compact('category'));
     }
 
-    public function product($category, $product){
-        return view('product', compact('category', 'product'));
+    public function product($catategory = null, $product){
+       // $category = Category::where('code', $category)->first();
+        $product = Product::where('code', $product)->first();
+        return view('product', compact('product'));
     }
 
     public function bascet(){
