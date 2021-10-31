@@ -37,6 +37,7 @@ class BasketController extends Controller
         if(is_null($orderId)){
             return false;
         }
+        $order = Order::find($orderId);
         $order->products()->detach($productId);
         return redirect('bascet');
     }

@@ -28,7 +28,7 @@
                     </td>
                     <td>
                         <div class="btn-group form-inline">
-                            <form action="http://internet-shop.tmweb.ru/basket/remove/2" method="POST">
+                            <form action="{{route('bascet-remove', $product)}}" method="POST">
                                 <button type="submit" class="btn btn-danger"><span  class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
                                 @csrf                           
                             </form>
