@@ -24,7 +24,7 @@
                 <li class="active"><a href="{{route('index')}}">Все товары</a></li>
                 <li><a href="{{route('categories')}}">Категории</a></li>
                 <li ><a href="{{route('bascet')}}">В корзину</a></li>
-                <li><a href="http://internet-shop.tmweb.ru/reset">Сбросить проект в начальное состояние</a></li>
+                <!--<li><a href="http://internet-shop.tmweb.ru/reset">Сбросить проект в начальное состояние</a></li>
                 <li><a href="http://internet-shop.tmweb.ru/locale/en">en</a></li>
 
                 <li class="dropdown">
@@ -34,10 +34,10 @@
                         <li><a href="http://internet-shop.tmweb.ru/currency/USD">$</a></li>
                         <li><a href="http://internet-shop.tmweb.ru/currency/EUR">€</a></li>
                     </ul>
-                </li>
+                </li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://internet-shop.tmweb.ru/login">Войти</a></li>
+                <li><a href="#">Войти</a></li>
             </ul>
         </div>
     </div>
