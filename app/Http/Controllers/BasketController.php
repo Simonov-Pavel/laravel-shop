@@ -31,4 +31,13 @@ class BasketController extends Controller
 
         return redirect('bascet');
     }
+
+    public function bascetRemove($productId){
+        $orderId = session('orderId');
+        if(is_null($orderId)){
+            return false;
+        }
+        $order->products()->detach($productId);
+        return redirect('bascet');
+    }
 }
