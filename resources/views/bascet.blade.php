@@ -23,7 +23,7 @@
                     <td>
                         <a href="{{route('product', [$product->category->code, $product->code])}}">
                             <img height="56px" src="http://internet-shop.tmweb.ru/storage/products/iphone_x_silver.jpg">
-                            iPhone X 256GB
+                            {{$product->name}}
                         </a>
                     </td>
                     <td><span class="badge">1</span>
@@ -41,8 +41,8 @@
                             </form>
                         </div>
                     </td>
-                    <td>89990 ₽</td>
-                    <td>89990 ₽</td>
+                    <td>{{$product->price}} ₽</td>
+                    <td>{{$product->price}} ₽</td>
                 </tr>
                 @endforeach
                 

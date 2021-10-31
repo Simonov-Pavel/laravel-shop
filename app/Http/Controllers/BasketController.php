@@ -9,7 +9,7 @@ class BasketController extends Controller
 {
     public function bascet(){
         $orderId = session('orderId');
-        if(is_null($orderId)){
+        if(!is_null($orderId)){
             $order = Order::findOrFail($orderId);
         }
         return view('bascet', compact('order'));
