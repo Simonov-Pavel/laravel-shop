@@ -7,10 +7,8 @@
             <p>{{$product->price}} ₽</p>
             <p>
                 <a href="{{ route('bascet') }}" class="btn btn-primary" role="button">В корзину</a>
-                @isset($category)
-                {{ $category->name }}
-                @endisset
-                <a href="http://internet-shop.tmweb.ru/mobiles/iphone_x_64" class="btn btn-default" role="button">Подробнее</a>
+                
+                <a href="{{route('product', [$product->category->code, $product->code])}}" class="btn btn-default" role="button">Подробнее</a>
             </p>
         </div>
     </div>
