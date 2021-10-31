@@ -6,7 +6,7 @@
             <h3>{{$product->name}}</h3>
             <p>{{$product->price}} ₽</p>
             <p>
-                <form action="{{route('bascet-add', $product)}}">
+                <form action="{{route('bascet-add', $product)}}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-primary" role="button">В корзину</button>
                 </form>
