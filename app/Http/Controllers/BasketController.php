@@ -28,7 +28,6 @@ class BasketController extends Controller
             $order = Order::find($orderId);
         }
         $order->products()->attach($productId);
-
         return redirect('bascet');
     }
 
