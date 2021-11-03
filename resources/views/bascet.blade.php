@@ -46,7 +46,7 @@
                 
                 <tr>
                     <td colspan="3">Общая стоимость:</td>
-                    <td>89990 ₽</td>
+                    <td>{{$order->getFullPrice()}} ₽</td>
                 </tr>
             </tbody>
         </table>
