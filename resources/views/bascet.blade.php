@@ -40,7 +40,7 @@
                         </div>
                     </td>
                     <td>{{$product->price}} ₽</td>
-                    <td>{{$product->price}} ₽</td>
+                    <td>{{$product->getPriceForCount($product->pivot->count)}} ₽</td>
                 </tr>
                 @endforeach
                 
