@@ -32,7 +32,7 @@
                                 <button type="submit" class="btn btn-danger"><span  class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
                                 @csrf                           
                             </form>
-                            <span class="badge">1</span>
+                            <span class="badge">{{ $product->pivot->count }}</span>
                             <form action="{{route('bascet-add', $product)}}" method="POST">
                                 <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                                 @csrf                         

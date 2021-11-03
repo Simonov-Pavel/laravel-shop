@@ -46,7 +46,7 @@ class BasketController extends Controller
         $order = Order::find($orderId);
         if($order->products->contains($productId)){
             $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
-            if($pivotRow->count() < 2){
+            if($pivotRow->count < 2){
                 $order->products()->detach($productId);
             }else
                 $pivotRow->count--;
