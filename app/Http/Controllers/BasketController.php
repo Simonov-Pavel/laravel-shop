@@ -16,7 +16,12 @@ class BasketController extends Controller
     }
 
     public function order(){
-        return view('order');
+        $orderId = session('orderId');
+        if(is_null($orderId)){
+            redirect('index');
+        }
+        $order = Order::find($orderId);
+        return view('order', compact('order'));
     }
 
     public function bascetAdd($productId){
