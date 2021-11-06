@@ -23,7 +23,7 @@ class BasketController extends Controller
     public function order(){
         $orderId = session('orderId');
         if(is_null($orderId)){
-            redirect('index');
+            return redirect()->route('index');
         }
         $order = Order::find($orderId);
         return view('order', compact('order'));
