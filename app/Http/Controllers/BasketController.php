@@ -60,4 +60,9 @@ class BasketController extends Controller
         
         return redirect('bascet');
     }
+
+    public function bascetConfirm(OrderRequest $request){
+        $data = $request->validated();
+        return redirect('bascet');
+    }
 }
