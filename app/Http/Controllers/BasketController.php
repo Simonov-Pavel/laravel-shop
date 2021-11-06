@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Request\OrderRequest;
 use App\Models\Order;
 
 class BasketController extends Controller
@@ -63,6 +64,7 @@ class BasketController extends Controller
 
     public function bascetConfirm(OrderRequest $request){
         $data = $request->validated();
-        return redirect('bascet');
+       
+        return redirect()->route('index');
     }
 }
