@@ -29,11 +29,11 @@ class BasketController extends Controller
         return view('order', compact('order'));
     }
 
-    public function bascetAdd($productId){
+    public function bascetAdd($productId){ 
         $orderId = session('orderId');
         if(is_null($orderId)){
-            $order = Order::create()->id;
-            session(['orderId' => $order]);
+            $order = Order::create();
+            session(['orderId' => $order->id]);
         }else{
             $order = Order::find($orderId);
         }
@@ -67,10 +67,14 @@ class BasketController extends Controller
     }
 
     public function bascetConfirm(OrderRequest $request){
+        $orderId = session('orderId');
+        if(is_null($orderId)){
+            return redirect()->route('index');
+        }
+        $order = Order::find($orderId);
+        
         $data = $request->validated();
-        $data['status'] = 1;
-        Order::save();
-       
+        $order->saveOrder($request->name, $request->phone);
         return redirect()->route('index');
     }
 }
