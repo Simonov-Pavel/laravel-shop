@@ -64,6 +64,8 @@ class BasketController extends Controller
 
     public function bascetConfirm(OrderRequest $request){
         $data = $request->validated();
+        $data['status'] = 1;
+        Order::firstOrCreate($data);
        
         return redirect()->route('index');
     }
