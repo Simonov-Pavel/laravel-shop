@@ -17,6 +17,9 @@
                             <div class="col-lg-4">
                                 <input type="text" name="name" id="name" value="" class="form-control">
                             </div>
+                            @error('name')
+						<div class="text-danger">{{$message}}</div>
+						@enderror
                         </div>
                         <br>
                         <br>
@@ -25,14 +28,9 @@
                             <div class="col-lg-4">
                                 <input type="text" name="phone" id="phone" value="" class="form-control">
                             </div>
-                        </div>
-                        <br>
-                        <br>
-                        <div class="form-group">
-                            <label for="name" class="control-label col-lg-offset-3 col-lg-2">Email: </label>
-                            <div class="col-lg-4">
-                                <input type="text" name="email" id="email" value="" class="form-control">
-                            </div>
+                            @error('phone')
+						        <div class="text-danger">{{$message}}</div>
+						    @enderror
                         </div>
                     </div>
                     <br>

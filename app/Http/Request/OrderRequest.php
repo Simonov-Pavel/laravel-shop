@@ -29,4 +29,14 @@ class OrderRequest extends FormRequest
         ];
     }
 
+    public function messages(){
+        return [
+			'name.required' => 'Это поле обязательно для заполнения',
+			'name.string' => 'Это поле обязательно должно быть строкой',
+			'name.min' => 'Минимальное 4 символа',
+			'phone.required' => 'Это поле обязательно для заполнения',
+			'phone.string' => 'Это поле обязательно должно быть строкой',
+		];
+    }
+
 }
