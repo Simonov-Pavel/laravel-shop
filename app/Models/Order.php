@@ -40,7 +40,6 @@ class Order extends Model
             $this->products()->detach($productId);
             $this->delete();
             session()->forget('orderId');
-            return redirect()->route('index');
         }
     }
 }
