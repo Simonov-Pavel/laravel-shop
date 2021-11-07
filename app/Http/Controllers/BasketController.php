@@ -60,13 +60,20 @@ class BasketController extends Controller
         if($order->products->contains($productId)){
             $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
             if($pivotRow->count < 2){
+                if($order->products->count() < 2){
+                    $order->products()->detach($productId);
+                    session()->flash('warning', 'Delite all products');
+                    session()->forget('orderId');
+                    return redirect()->route('index');
+                }
                 $order->products()->detach($productId);
+                
             }else
                 $pivotRow->count--;
                 $pivotRow->update();
         }
         session()->flash('warning', 'Удален товар ' . $product->name);
-
+        
         return redirect('bascet');
     }
 
