@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\BasketController;
-;
+
 
 Route::get('/', [MainController::class, 'index'])->name('index');
 
@@ -17,3 +17,8 @@ Route::get('/categories', [MainController::class, 'categories'])->name('categori
 Route::get('/{category}', [MainController::class, 'category'])->name('category');
 Route::get('/{category}/{product}', [MainController::class, 'product'])->name('product');
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
