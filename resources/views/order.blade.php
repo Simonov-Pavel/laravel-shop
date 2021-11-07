@@ -3,7 +3,7 @@
 @section('title', 'Оформление заказа')
 
 @section('content')
-<div class="starter-template">
+
     <h1>Подтвердите заказ:</h1>
     <div class="container">
         <div class="row justify-content-center">
@@ -40,5 +40,5 @@
             </form>
         </div>
     </div>
-    </div>
+
 @endsection

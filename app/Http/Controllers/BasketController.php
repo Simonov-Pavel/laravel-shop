@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Request\OrderRequest;
 use App\Models\Order;
+use App\Models\Product;
 
 class BasketController extends Controller
 {
@@ -37,6 +38,7 @@ class BasketController extends Controller
         }else{
             $order = Order::find($orderId);
         }
+        $product = Product::find($productId);
         if($order->products->contains($productId)){
             $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
             $pivotRow->count++;
@@ -44,7 +46,7 @@ class BasketController extends Controller
         }else{
             $order->products()->attach($productId);
         }
-
+        session()->flash('success', 'Добавлен товар ' . $product->name);
         return redirect('bascet');
     }
 
@@ -54,6 +56,7 @@ class BasketController extends Controller
             return redirect('bascet');
         }
         $order = Order::find($orderId);
+        $product = Product::find($productId);
         if($order->products->contains($productId)){
             $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
             if($pivotRow->count < 2){
@@ -62,7 +65,8 @@ class BasketController extends Controller
                 $pivotRow->count--;
                 $pivotRow->update();
         }
-        
+        session()->flash('warning', 'Удален товар ' . $product->name);
+
         return redirect('bascet');
     }
 
@@ -75,6 +79,7 @@ class BasketController extends Controller
         
         $data = $request->validated();
         $order->saveOrder($request->name, $request->phone);
+        session()->flash('success', 'Ваш заказ в обработке');
         return redirect()->route('index');
     }
 }

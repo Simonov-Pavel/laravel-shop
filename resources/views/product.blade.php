@@ -3,7 +3,7 @@
 @section('title', 'Продукт ')
 
 @section('content')
-    <div class="starter-template">
+
         <h1>{{$product->name}}</h1>
         <h2>{{$product->category->name}}</h2>
         <p>Price: <b>{{$product->price}} ₽</b></p>
@@ -13,5 +13,5 @@
             <button type="submit" class="btn btn-success" role="button">Add to Cart</button>
                     
         </form>
-    </div>
+
 @endsection
