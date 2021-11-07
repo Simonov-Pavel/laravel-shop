@@ -60,12 +60,13 @@ class BasketController extends Controller
         if($order->products->contains($productId)){
             $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
             if($pivotRow->count < 2){
-                if($order->products->count() < 2){
+                $order->removeOrder($productId);
+                /*if($order->products->count() < 2){
                     $order->products()->detach($productId);
                     session()->flash('warning', 'Delite all products');
                     session()->forget('orderId');
                     return redirect()->route('index');
-                }
+                }*/
                 $order->products()->detach($productId);
                 
             }else
@@ -86,7 +87,7 @@ class BasketController extends Controller
         
         $data = $request->validated();
         $order->saveOrder($request->name, $request->phone);
-        session()->flash('success', 'Ваш заказ в обработке');
+        
         return redirect()->route('index');
     }
 }

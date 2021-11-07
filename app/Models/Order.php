@@ -30,8 +30,17 @@ class Order extends Model
             $this->status = 1;
             $this->save();
             session()->forget('orderId');
+            session()->flash('success', 'Ваш заказ в обработке');
             return true;
-        }else return false;
-        
+        }else return false; 
+    }
+
+    public function removeOrder($productId){
+        if($this->products->count() < 2){
+            $this->products()->detach($productId);
+            $this->delete();
+            session()->forget('orderId');
+            return redirect()->route('index');
+        }
     }
 }
