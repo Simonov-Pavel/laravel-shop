@@ -37,7 +37,18 @@
                 </li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Войти</a></li>
+                @guest
+                <li><a href="{{ route('login') }}">Войти</a></li>
+                @endguest
+                @auth
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <button type="submit" style="background:transparent; border:none; color:#fff" onclick="event.preventDefault();
+                                        this.closest('form').submit();">Выйти
+                    </button>
+                </form>
+                @endauth
             </ul>
         </div>
     </div>
