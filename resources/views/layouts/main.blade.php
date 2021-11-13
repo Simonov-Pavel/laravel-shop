@@ -44,7 +44,7 @@
                 @auth
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" style="background:transparent; border:none; color:#fff" 
+                    <button type="submit" style="background:transparent; border:none; color:#fff; padding-top:15px" 
                     onclick="event.preventDefault(); this.closest('form').submit();">Выйти </button>
                 </form>
                 @endauth
