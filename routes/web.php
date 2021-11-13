@@ -12,7 +12,9 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [MainController::class, 'index'])->name('index');
 
-
+Route::group(['prefix'=>'admin'], function(){
+    Route::get('/', [App\Http\Controllers\Admin\MainController::class, 'index'])->name('admin');
+});
 
 Route::group(['prefix'=>'bascet'], function(){
     Route::get('/', [BasketController::class, 'bascet'])->name('bascet');
