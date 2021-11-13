@@ -40,7 +40,7 @@
                     <td>{{$order->phone}}</td>
                     <td>{{$order->getFullPrice()}}</td>
                     <td>
-                        <a href="#" class="btn btn-tool"><i class="fas fa-eye text-success"></i></a>
+                        <a href="{{route('admin.order.show', $order)}}" class="btn btn-tool"><i class="fas fa-eye text-success"></i></a>
                         <a href="#" class="btn btn-tool"><i class="fas fa-pen text-primary"></i></a>
                         <a href="#" class="btn btn-tool"><i class="fas fa-times text-danger"></i></a>
                     </td>
