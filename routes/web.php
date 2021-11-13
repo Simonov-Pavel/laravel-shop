@@ -12,7 +12,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [MainController::class, 'index'])->name('index');
 
-Route::group(['prefix'=>'admin'], function(){
+Route::group(['prefix'=>'admin', 'middleware'=>'admin'], function(){
     Route::get('/', [App\Http\Controllers\Admin\MainController::class, 'index'])->name('admin');
     Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.orders');
     Route::get('/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.order.show');
