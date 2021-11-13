@@ -44,8 +44,8 @@
                 @auth
                 @if(Auth::user()->role == 1){
                     <li><a href="{{ route('admin') }}">Панель администратора</a></li>
-                }else {
-                    <li>Добро пожаловать, {{ Auth::user()->name }}</li>
+                }@else {
+                    <li style="color:#fff">Добро пожаловать, {{ Auth::user()->name }}</li>
                 }
                 @endif
                 <form method="POST" action="{{ route('logout') }}">
