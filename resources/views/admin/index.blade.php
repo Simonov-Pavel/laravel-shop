@@ -1,20 +1,10 @@
 @extends('layouts.panel')
 @section('title', 'Админ панель')
-@section('panel-menu')
-    <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item">
-                <a href="pages/gallery.html" class="nav-link">
-                    <i class="nav-icon far fa-image"></i>
-                    <p>Gallery</p>
-                </a>
-            </li>
-        </ul>
-    </nav>
+@section('menu')
+@include('includes.admin-menu')
 @endsection
-
 @section('content')
-<div class="content-wrapper">
+
         <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -97,5 +87,5 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-</div>
+
 @endsection
