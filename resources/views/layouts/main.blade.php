@@ -42,6 +42,12 @@
                 <li><a href="{{ route('login') }}">Войти</a></li>
                 @endguest
                 @auth
+                @if(Auth::user()->role == 1){
+                    <li><a href="{{ route('admin') }}">Панель администратора</a></li>
+                }else {
+                    <li>Добро пожаловать, {{ Auth::user()->name }}</li>
+                }
+                @endif
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" style="background:transparent; border:none; color:#fff; padding-top:15px" 
