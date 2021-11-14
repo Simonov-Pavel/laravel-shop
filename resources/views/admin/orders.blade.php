@@ -1,4 +1,5 @@
 @extends('layouts.panel')
+@section('panel', 'Админ панель')
 @section('title', 'Админ панель - Заказы')
 @section('menu')
 @include('includes.admin-menu')
@@ -41,7 +42,6 @@
                     <td>{{$order->getFullPrice()}}</td>
                     <td>
                         <a href="{{route('admin.order.show', $order)}}" class="btn btn-tool"><i class="fas fa-eye text-success"></i></a>
-                        <a href="#" class="btn btn-tool"><i class="fas fa-pen text-primary"></i></a>
                         <a href="#" class="btn btn-tool"><i class="fas fa-times text-danger"></i></a>
                     </td>
                 </tr>

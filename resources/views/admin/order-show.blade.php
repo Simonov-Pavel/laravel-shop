@@ -1,4 +1,5 @@
 @extends('layouts.panel')
+@section('panel', 'Админ панель')
 @section('title', 'Админ панель - Заказ '. $order->id)
 @section('menu')
 @include('includes.admin-menu')

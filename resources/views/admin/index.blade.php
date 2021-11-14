@@ -1,5 +1,6 @@
 @extends('layouts.panel')
 @section('title', 'Админ панель')
+@section('panel', 'Админ панель')
 @section('menu')
 @include('includes.admin-menu')
 @endsection
