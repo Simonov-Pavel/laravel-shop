@@ -16,6 +16,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth','admin']], function(){
     Route::get('/', [App\Http\Controllers\Admin\MainController::class, 'index'])->name('admin');
     Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.orders');
     Route::get('/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.order.show');
+    Route::resource('categories', App\Http\Controllers\Admin\CategoryController::class);
 });
 
 Route::group(['prefix'=>'bascet'], function(){
