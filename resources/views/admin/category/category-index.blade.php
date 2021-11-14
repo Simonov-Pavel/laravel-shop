@@ -21,7 +21,9 @@
             </div>
         </div>
     </div>
-
+    <div>
+        <a href="{{ route('categories.create') }}" class="btn btn-primary">Добавить категорию</a>
+    </div>
     <div class="card-body p-0">
         <table class="table table-hover text-nowrap">
             <thead>
