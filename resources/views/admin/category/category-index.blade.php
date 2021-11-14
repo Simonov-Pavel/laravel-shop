@@ -41,9 +41,15 @@
                     <td>{{$category->name}}</td>
                     <td>{{$category->code}}</td>
                     <td>
+                    <form action="{{ route('categories.destroy', $category) }}" method="post">
                         <a href="{{route('categories.show', $category)}}" class="btn btn-tool"><i class="fas fa-eye text-success"></i></a>
                         <a href="{{route('categories.edit', $category)}}" class="btn btn-tool"><i class="fas fa-pen text-primary"></i></a>
-                        <a href="#" class="btn btn-tool"><i class="fas fa-times text-danger"></i></a>
+                        
+                            @csrf 
+                            @method('DELITE')
+                            <button type="submit" style="background:transparent; border:none"><i class="fas fa-times text-danger"></i></button>
+                        </form>
+                        
                     </td>
                 </tr>
                 @endforeach
