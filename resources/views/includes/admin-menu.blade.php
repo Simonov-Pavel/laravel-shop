@@ -6,5 +6,11 @@
                 <p>Заказы</p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('categories.index') }}" class="nav-link">
+            <i class="nav-icon ion ion-bag"></i>
+                <p>Категории</p>
+            </a>
+        </li>
     </ul>
 </nav>
