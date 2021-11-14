@@ -46,7 +46,7 @@
                         <a href="{{route('categories.edit', $category)}}" class="btn btn-tool"><i class="fas fa-pen text-primary"></i></a>
                         
                             @csrf 
-                            @method('DELITE')
+                            @method('DELETE')
                             <button type="submit" style="background:transparent; border:none"><i class="fas fa-times text-danger"></i></button>
                         </form>
                         
