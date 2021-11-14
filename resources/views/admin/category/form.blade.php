@@ -41,7 +41,10 @@
     <div class="card">
         <form class="form-horizontal" method="post" action="@if(isset($category)){{ route('categories.update', $category) }}@else{{ route('categories.store') }}@endif">
             @csrf
-            @method('put')
+            @if(isset($category))
+                @method('put')
+            @endif
+            
             <div class="card-body">
                 <div class="form-group row">
                     <label for="name" class="col-sm-2 col-form-label">Категория</label>
