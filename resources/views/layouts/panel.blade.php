@@ -80,6 +80,11 @@
 
   <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        @if(session()->has('success'))
+            <p class="alert alert-success">{{session()->get('success')}}</p>
+        @elseif(session()->has('warning'))
+            <p class="alert alert-warning">{{session()->get('warning')}}</p>
+        @endif
         @yield('content')
     </div>
   <!-- /.content-wrapper -->

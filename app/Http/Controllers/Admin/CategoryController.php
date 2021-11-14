@@ -38,6 +38,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         Category::create($request->all());
+        session()->flash('success', 'Категория добавленна');
         return redirect()->route('categories.index');
     }
 
@@ -73,6 +74,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $category->update($request->all());
+        session()->flash('success', 'Изменения сохраннены');
         return redirect()->route('categories.index');
     }
 
@@ -85,6 +87,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+        session()->flash('warning', 'Удалена категория ' . $category->name);
         return redirect()->route('categories.index');
     }
 }
