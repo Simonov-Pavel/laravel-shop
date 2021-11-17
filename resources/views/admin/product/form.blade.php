@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="card">
-        <form class="form-horizontal" method="post" action="@if(isset($product)){{ route('products.update', $product) }}@else{{ route('products.store') }}@endif">
+        <form class="form-horizontal" method="post" enctype="multipart/form-data" action="@if(isset($product)){{ route('products.update', $product) }}@else{{ route('products.store') }}@endif">
             @csrf
             @if(isset($product))
                 @method('put')
@@ -78,7 +78,18 @@
                         <input type="text" class="form-control" name="description" id="description" @isset($product)value="{{ $product->description }}"@endisset placeholder="Введите описание продукта">
                     </div>
                 </div>
-                
+                <div class="form-group row">
+                    <label for="price" class="col-sm-2 col-form-label">Цена</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="code" id="price" @isset($product)value="{{ $product->price }}"@endisset placeholder="Введите цену продукта">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="image" class="col-sm-2 col-form-label">Изображение</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="image" id="image">
+                    </div>
+                </div>
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-success">Сохранить</button>
