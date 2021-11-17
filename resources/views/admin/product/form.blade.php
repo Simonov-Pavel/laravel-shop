@@ -87,6 +87,9 @@
                 <div class="form-group row">
                     <label for="image" class="col-sm-2 col-form-label">Изображение</label>
                     <div class="col-sm-10">
+                        @isset($product)
+                            <img style="width: 100px;height:100px;background:transparent" src="{{ Storage::url($product->image) }}" alt="{{$product->name}}">
+                        @endisset
                         <input type="file" name="image" id="image">
                     </div>
                 </div>

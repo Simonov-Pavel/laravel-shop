@@ -44,6 +44,7 @@ class ProductController extends Controller
         $params = $request->all();
         $params['image'] = $path;
         Product::create($params);
+        session()->flash('success', "Продукт добавлен");
         return redirect()->route('products.index');
     }
 
@@ -84,6 +85,7 @@ class ProductController extends Controller
         $params = $request->all();
         $params['image'] = $path;
         $product->update($params);
+        session()->flash('success', "Изменения сохранены");
         return redirect()->route('products.index');
     }
 
@@ -95,6 +97,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Storage::delete($product->image);
+        $product->delete();
+        session()->flash('warning', "Продукт $product->name удален");
+        return redirect()->route('products.index');
     }
 }
