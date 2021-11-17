@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
@@ -36,8 +36,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
+        $params = $request->validated();
         $path = $request->file('image')->store('category');
         $params = $request->all();
         $params['image'] = $path;
@@ -75,12 +76,15 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        Storage::delete($category->image);
-        $path = $request->file('image')->store('category');
         $params = $request->all();
+        unset($params['image']);
+        if($request->has('image')){
+            Storage::delete($category->image);
+            $path = $request->file('image')->store('category');
         $params['image'] = $path;
+        }
         $category->update($params);
         session()->flash('success', 'Изменения сохраннены');
         return redirect()->route('categories.index');

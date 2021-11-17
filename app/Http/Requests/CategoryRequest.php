@@ -13,7 +13,7 @@ class CategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,18 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'name' => 'required|unique:categories,name',
+            'code' => 'required|unique:categories,code',
+            'description' => 'required|min:10|max:255',
+            'image' => 'required|file',
         ];
+
+        if($this->route()->named('categories.update')){
+            $rules['name'] .= ',' . $this->route()->parameter('category')->id;
+            $rules['code'] .= ',' . $this->route()->parameter('category')->id;
+        }
+
+        return $rules;
     }
 }
