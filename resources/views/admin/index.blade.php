@@ -33,7 +33,7 @@
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{$orders->count()}}</h3>    
-                            <p>New Orders</p>
+                            <p>Все заказы</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
@@ -46,13 +46,13 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>53<sup style="font-size: 20px">%</sup></h3>
-                            <p>Bounce Rate</p>
+                            <h3>{{$products->count()}}</h3>
+                            <p>Все продукты</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('products.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
