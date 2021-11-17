@@ -64,6 +64,15 @@
                         <input type="text" class="form-control" name="description" id="description" @isset($category)value="{{ $category->description }}"@endisset placeholder="Введите описание категории">
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="image" class="col-sm-2 col-form-label">Изображение</label>
+                    <div class="col-sm-10">
+                        @isset($category)
+                            <img style="width: 100px;height:100px;background:transparent" src="{{ Storage::url($category->image) }}" alt="{{$category->name}}">
+                        @endisset
+                        <input type="file" name="image" id="image">
+                    </div>
+                </div>
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-success">Сохранить</button>
