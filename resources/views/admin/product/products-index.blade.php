@@ -22,15 +22,17 @@
         </div>
     </div>
     <div>
-        <a href="{{ route('categories.create') }}" class="btn btn-primary">Добавить продукт</a>
+        <a href="{{ route('products.create') }}" class="btn btn-primary">Добавить продукт</a>
     </div>
     <div class="card-body p-0">
         <table class="table table-hover text-nowrap">
             <thead>
                 <tr>
                     <th style="width: 10px">№</th>
-                    <th>Категория</th>
+                    <th>Найменование</th>
                     <th>Код</th>
+                    <th>Категория</th>
+                    <th>Праис</th>
                     <th>Действие</th>
                 </tr>
             </thead>
@@ -40,10 +42,12 @@
                     <td>{{$product->id}}</td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->code}}</td>
+                    <td>{{$product->category->name}}</td>
+                    <td>{{$product->price}}</td>
                     <td>
-                    <form action="{{ route('categories.destroy', $category) }}" method="post">
-                        <a href="{{route('categories.show', $category)}}" class="btn btn-tool"><i class="fas fa-eye text-success"></i></a>
-                        <a href="{{route('categories.edit', $category)}}" class="btn btn-tool"><i class="fas fa-pen text-primary"></i></a>
+                    <form action="{{ route('products.destroy', $product) }}" method="post">
+                        <a href="{{route('products.show', $product)}}" class="btn btn-tool"><i class="fas fa-eye text-success"></i></a>
+                        <a href="{{route('products.edit', $product)}}" class="btn btn-tool"><i class="fas fa-pen text-primary"></i></a>
                         
                             @csrf 
                             @method('DELETE')
