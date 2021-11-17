@@ -12,5 +12,11 @@
                 <p>Категории</p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('products.index') }}" class="nav-link">
+            <i class="nav-icon ion ion-bag"></i>
+                <p>Продукты</p>
+            </a>
+        </li>
     </ul>
 </nav>
