@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="card">
-        <form class="form-horizontal" method="post" action="@if(isset($category)){{ route('categories.update', $category) }}@else{{ route('categories.store') }}@endif">
+        <form class="form-horizontal" enctype="multipart/form-data" method="post" action="@if(isset($category)){{ route('categories.update', $category) }}@else{{ route('categories.store') }}@endif">
             @csrf
             @if(isset($category))
                 @method('put')

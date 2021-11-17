@@ -30,6 +30,7 @@
                 <tr>
                     <th style="width: 10px">№</th>
                     <th>Категория</th>
+                    <th>Изображение</th>
                     <th>Код</th>
                     <th>Действие</th>
                 </tr>
@@ -39,6 +40,7 @@
                 <tr>
                     <td>{{$category->id}}</td>
                     <td>{{$category->name}}</td>
+                    <td><img style="widht:50px;height:50px" src="{{ Storage::url($category->image) }}" alt=""></td>
                     <td>{{$category->code}}</td>
                     <td>
                     <form action="{{ route('categories.destroy', $category) }}" method="post">
