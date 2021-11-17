@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -26,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.form');
+        $categories = Category::get();
+        return view('admin.product.form', compact('categories'));
     }
 
     /**
@@ -37,7 +39,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -59,7 +61,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.product.form', compact('product'));
+        $categories = Category::get();
+        return view('admin.product.form', compact('product', 'categories'));
     }
 
     /**

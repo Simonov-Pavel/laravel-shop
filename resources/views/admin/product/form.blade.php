@@ -59,11 +59,26 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Категория</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="category_id">
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}" 
+                                @isset($product)  
+                                    @if($product->category_id == $category->id) selected="selected" @endif 
+                                @endisset>
+                                {{$category->name}}</option>
+                            @endforeach
+                        </select >    
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="description" class="col-sm-2 col-form-label">Описание</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="description" id="description" @isset($product)value="{{ $product->description }}"@endisset placeholder="Введите описание продукта">
                     </div>
                 </div>
+                
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-success">Сохранить</button>
