@@ -81,7 +81,7 @@
                 <div class="form-group row">
                     <label for="price" class="col-sm-2 col-form-label">Цена</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="code" id="price" @isset($product)value="{{ $product->price }}"@endisset placeholder="Введите цену продукта">
+                        <input type="text" class="form-control" name="price" id="price" @isset($product)value="{{ $product->price }}"@endisset placeholder="Введите цену продукта">
                     </div>
                 </div>
                 <div class="form-group row">
