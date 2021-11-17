@@ -37,4 +37,12 @@ class CategoryRequest extends FormRequest
 
         return $rules;
     }
+
+    public function messages(){
+        return [
+            'required' => 'Это поле обязательно для запонения',
+            'unique' => 'Такое значение уже есть',
+            'name.min' => 'Поле имя должно содержать минимум 5 символов',
+        ];
+    }
 }
