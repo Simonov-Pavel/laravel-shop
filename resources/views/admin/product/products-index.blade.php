@@ -29,6 +29,7 @@
             <thead>
                 <tr>
                     <th style="width: 10px">№</th>
+                    <th>Изображение</th>
                     <th>Найменование</th>
                     <th>Код</th>
                     <th>Категория</th>
@@ -40,6 +41,7 @@
                 @foreach($products as $product)
                 <tr>
                     <td>{{$product->id}}</td>
+                    <td><img style="width: 100px;height:100px;background:transparent" src="{{Storage::url($product->image)}}"></td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->code}}</td>
                     <td>{{$product->category->name}}</td>
