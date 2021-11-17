@@ -49,19 +49,31 @@
                 <div class="form-group row">
                     <label for="name" class="col-sm-2 col-form-label">Категория</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" id="name" @isset($category)value="{{ $category->name }}"@endisset placeholder="Введите наименование категории">
+                        <input type="text" class="form-control" name="name" id="name" 
+                        value="{{ old('name', isset($category)? $category->name : null) }}" placeholder="Введите наименование категории">
+                        @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="code" class="col-sm-2 col-form-label">Код</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="code" id="code" @isset($category)value="{{ $category->code }}"@endisset placeholder="Введите код категории">
+                        <input type="text" class="form-control" name="code" id="code" 
+                        value="{{ old('code', isset($category) ? $category->code : null) }}" placeholder="Введите код категории">
+                        @error('code')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="description" class="col-sm-2 col-form-label">Описание</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="description" id="description" @isset($category)value="{{ $category->description }}"@endisset placeholder="Введите описание категории">
+                        <input type="text" class="form-control" name="description" id="description" 
+                        value="{{ old('description', isset($category) ? $category->description : null) }}" placeholder="Введите описание категории">
+                        @error('description')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group row">
@@ -71,6 +83,9 @@
                             <img style="width: 100px;height:100px;background:transparent" src="{{ Storage::url($category->image) }}" alt="{{$category->name}}">
                         @endisset
                         <input type="file" name="image" id="image">
+                        @error('image')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>
