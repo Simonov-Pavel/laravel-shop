@@ -42,7 +42,7 @@
                     <td>{{$category->code}}</td>
                     <td>
                     <form action="{{ route('categories.destroy', $category) }}" method="post">
-                        <a href="{{route('categories.show', $category)}}" class="btn btn-tool"><i class="fas fa-eye text-success"></i></a>
+                        <a href="{{route('category',[$category->code])}}" class="btn btn-tool"><i class="fas fa-eye text-success"></i></a>
                         <a href="{{route('categories.edit', $category)}}" class="btn btn-tool"><i class="fas fa-pen text-primary"></i></a>
                         
                             @csrf 
