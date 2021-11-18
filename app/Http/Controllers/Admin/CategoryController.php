@@ -98,6 +98,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        Storage::delete($category->image);
         $category->delete();
         session()->flash('warning', 'Удалена категория ' . $category->name);
         return redirect()->route('categories.index');
