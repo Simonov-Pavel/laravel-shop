@@ -7,9 +7,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="" class="@menuactive('user.order*') nav-link">
+            <a href="{{ route('orders.index') }}" class="@menuactive('user.order*') nav-link">
             <i class="nav-icon ion ion-bag"></i>
-                <p>Заказы</p>
+                <p>Мои заказы</p>
             </a>
         </li>
     </ul>
