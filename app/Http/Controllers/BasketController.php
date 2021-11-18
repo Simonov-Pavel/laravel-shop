@@ -77,7 +77,10 @@ class BasketController extends Controller
             return redirect()->route('index');
         }
         $order = Order::find($orderId);
-        $request->id = auth()->user()->id;
+        if(auth()->user()){
+            $request->id = auth()->user()->id;
+        }else $request->id = null;
+        
         $data = $request->validated();
         $order->saveOrder($request->name, $request->phone, $request->id);
         
