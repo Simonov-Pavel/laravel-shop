@@ -13,7 +13,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,28 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
+        $rules = [
+            'name' => 'required|min:4|max:30',
+            'code' => 'required|unique:products,code',
+            'category_id' => 'required|exists:categories,id',
+            'description' => 'required|min:10',
+            'image' => 'file',
+            'price' => 'required|numeric|min:1',
+        ];
+
+        if($this->route()->named('products.update')){
+            $rules['name'] .= ',' . $this->route()->parameter('product')->id;
+            $rules['code'] .= ',' . $this->route()->parameter('product')->id;
+        }
+
+        return $rules;
+    }
+
+    public function messages(){
         return [
-            //
+            'required' => 'Это поле обязательно для запонения',
+            'unique' => 'Такое значение уже есть',
+            'name.min' => 'Поле имя должно содержать минимум 4 символов',
         ];
     }
 }
