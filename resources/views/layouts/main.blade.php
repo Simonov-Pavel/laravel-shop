@@ -48,11 +48,13 @@
                     <li><a href="{{ route('user') }}">Личный кабинет</a></li>
                 }
                 @endif
+                <li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" style="background:transparent; border:none; color:#fff; padding-top:15px" 
                     onclick="event.preventDefault(); this.closest('form').submit();">Выйти </button>
                 </form>
+                </li>
                 @endauth
             </ul>
         </div>
