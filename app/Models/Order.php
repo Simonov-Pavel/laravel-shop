@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'phone', 'status'];
+    protected $fillable = ['name', 'phone', 'status', 'user_id'];
 
     public function products(){
         return $this->belongsToMany(Product::class)->withPivot('count')->withTimestamps();
@@ -23,10 +23,11 @@ class Order extends Model
         return $sum;
     }
 
-    public function saveOrder($name, $phone){
+    public function saveOrder($name, $phone, $id){
         if($this->status == 0){
             $this->name = $name;
             $this->phone = $phone;
+            $this->user_id = $id;
             $this->status = 1;
             $this->save();
             session()->forget('orderId');
