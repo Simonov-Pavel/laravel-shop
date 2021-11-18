@@ -17,7 +17,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Auth::user()->order()->where('status', 1);
-        dd($orders);
+        return view('user.orders', compact('orders'));
     }
 
     /**
