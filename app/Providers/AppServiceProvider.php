@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::directive('menuactive', function($route){
             return "<?php echo Route::currentRouteNamed($route) ? 'active' : '' ?>";
+        });
+
+        Route::directive('admin', function(){
+            return Auth::user()->role === 1;
         });
     }
 }
