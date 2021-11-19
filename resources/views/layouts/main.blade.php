@@ -42,12 +42,12 @@
                 <li><a href="{{ route('login') }}">Войти</a></li>
                 @endguest
                 @auth
-                @if(Auth::user()->role == 1){
+                @admin{
                     <li><a href="{{ route('admin') }}">Панель администратора</a></li>
                 }@else {
                     <li><a href="{{ route('user') }}">Личный кабинет</a></li>
                 }
-                @endif
+                @endadmin
                 <li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
