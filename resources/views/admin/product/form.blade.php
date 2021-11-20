@@ -98,6 +98,15 @@
                         @include('includes.error', ['field' => 'image'])
                     </div>
                 </div>
+                @foreach(['new'=>'Новинка', 'hit'=>'Хит', 'recomend'=>'Рекомендуем'] as $field=>$name)
+                <div class="form-group row">
+                    <label for="{{$field}}" class="col-sm-2 col-form-label">{{$name}}</label>
+                    <div class="col-sm-10">
+                        <input type="checkbox" name="{{$field}}" id="{{$field}}" placeholder="Введите наименование продукта"
+                        @if(isset($product) && $product->$field === 1) checked='checked' @endif >
+                    </div>
+                </div>
+                @endforeach
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-success">Сохранить</button>
