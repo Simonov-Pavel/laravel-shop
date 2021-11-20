@@ -50,12 +50,14 @@
                     <label for="name" class="col-sm-2 col-form-label">Найменование</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="name" id="name" @isset($product)value="{{ $product->name }}"@endisset placeholder="Введите наименование продукта">
+                        @include('includes.error', ['field' => 'name'])
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="code" class="col-sm-2 col-form-label">Код</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="code" id="code" @isset($product)value="{{ $product->code }}"@endisset placeholder="Введите код продукта">
+                        @include('includes.error', ['field' => 'code'])
                     </div>
                 </div>
                 <div class="form-group row">
@@ -76,12 +78,14 @@
                     <label for="description" class="col-sm-2 col-form-label">Описание</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="description" id="description" @isset($product)value="{{ $product->description }}"@endisset placeholder="Введите описание продукта">
+                        @include('includes.error', ['field' => 'description'])
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="price" class="col-sm-2 col-form-label">Цена</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="price" id="price" @isset($product)value="{{ $product->price }}"@endisset placeholder="Введите цену продукта">
+                        @include('includes.error', ['field' => 'price'])
                     </div>
                 </div>
                 <div class="form-group row">
@@ -91,6 +95,7 @@
                             <img style="width: 100px;height:100px;background:transparent" src="{{ Storage::url($product->image) }}" alt="{{$product->name}}">
                         @endisset
                         <input type="file" name="image" id="image">
+                        @include('includes.error', ['field' => 'image'])
                     </div>
                 </div>
             </div>
