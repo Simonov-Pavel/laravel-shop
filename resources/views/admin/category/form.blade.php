@@ -51,9 +51,7 @@
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="name" id="name" 
                         value="{{ old('name', isset($category)? $category->name : null) }}" placeholder="Введите наименование категории">
-                        @error('name')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                        @include('includes.error', ['field' => 'name'])
                     </div>
                 </div>
                 <div class="form-group row">
@@ -61,9 +59,7 @@
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="code" id="code" 
                         value="{{ old('code', isset($category) ? $category->code : null) }}" placeholder="Введите код категории">
-                        @error('code')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                        @include('includes.error', ['field' => 'code'])
                     </div>
                 </div>
                 <div class="form-group row">
@@ -71,9 +67,7 @@
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="description" id="description" 
                         value="{{ old('description', isset($category) ? $category->description : null) }}" placeholder="Введите описание категории">
-                        @error('description')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                        @include('includes.error', ['field' => 'description'])
                     </div>
                 </div>
                 <div class="form-group row">
@@ -83,9 +77,7 @@
                             <img style="width: 100px;height:100px;background:transparent" src="{{ Storage::url($category->image) }}" alt="{{$category->name}}">
                         @endisset
                         <input type="file" name="image" id="image">
-                        @error('image')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                        @include('includes.error', ['field' => 'image'])
                     </div>
                 </div>
             </div>
