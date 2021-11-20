@@ -81,10 +81,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        Storage::delete($product->image);
-        $path = $request->file('image')->store('products');
         $params = $request->all();
-        $params['image'] = $path;
+        unset($params['image']);
+        if($request->has('image')){
+            Storage::delete($product->image);
+            $params['image'] = $request->file('image')->store('products');
+        }
+
+        foreach(['new', 'hit', 'recomend'] as $field){
+            if(!isset($params[$field])){
+                $params[$field] = 0;
+            }
+        }
+        
         $product->update($params);
         session()->flash('success', "Изменения сохранены");
         return redirect()->route('products.index');
