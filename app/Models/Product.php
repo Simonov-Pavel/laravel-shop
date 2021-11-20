@@ -23,6 +23,18 @@ class Product extends Model
         return $this->price;
     }
 
+    public function setNewAttribute($value){
+        $this->attributes['new'] = $value === 'on' ? 1 : 0;
+    }
+
+    public function setHitAttribute($value){
+        $this->attributes['hit'] = $value === 'on' ? 1 : 0;
+    }
+
+    public function setRecomendAttribute($value){
+        $this->attributes['recomend'] = $value === 'on' ? 1 : 0;
+    }
+
     public function isNew(){
         return $this->new === 1;
     }
