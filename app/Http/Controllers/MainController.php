@@ -9,7 +9,7 @@ use App\Models\Product;
 class MainController extends Controller
 {
     public function index(){
-        $products = Product::get();
+        $products = Product::paginate(3);
         return view('welcome', compact('products'));
     }
 
