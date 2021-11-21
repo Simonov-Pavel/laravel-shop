@@ -8,8 +8,20 @@ use App\Models\Product;
 
 class MainController extends Controller
 {
-    public function index(){
-        $products = Product::paginate(6);
+    public function index(Request $request){
+        $productsQuery = Product::query();
+        if($request->filled('price_from')){
+            $productsQuery->where('price', '>=', $request->price_from);
+        }
+        if($request->filled('price_to')){
+            $productsQuery->where('price', '<=', $request->price_to);
+        }
+        foreach(['hit', 'new', 'recomend'] as $field){
+            if($request->has($field)){
+                $productsQuery->where($field, 1);
+            }
+        }
+        $products = $productsQuery->paginate(6)->withPath('?' . $request->getQueryString());
         return view('welcome', compact('products'));
     }
 
@@ -24,7 +36,6 @@ class MainController extends Controller
     }
 
     public function product($catategory = null, $product){
-       // $category = Category::where('code', $category)->first();
         $product = Product::where('code', $product)->first();
         return view('product', compact('product'));
     }
