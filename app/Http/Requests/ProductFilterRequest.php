@@ -13,7 +13,7 @@ class ProductFilterRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,14 @@ class ProductFilterRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'price_from' => 'nullable|numeric|min:0',
+            'price_to' => 'nullable|numeric|min:0',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'numeric' => 'Ошибка ввода поле должно быть числом',
         ];
     }
 }
