@@ -17,7 +17,7 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::user()->role == 1){
+        if(!Auth::user()->isAdmin()){
             session()->flash('warning', 'У вас не достаточно прав');
             return redirect()->route('index');
         } 
