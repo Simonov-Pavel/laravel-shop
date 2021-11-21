@@ -15,6 +15,10 @@ class Order extends Model
         return $this->belongsToMany(Product::class)->withPivot('count')->withTimestamps();
     }
 
+    public function scopeActive($query){
+        return $query->where('status', 1);
+    }
+
     public function getFullPrice(){
         $sum = 0;
         foreach($this->products as $product){
