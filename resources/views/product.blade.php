@@ -11,7 +11,12 @@
         <p>{{$product->description}}</p>
         <form action="{{route('bascet-add', $product)}}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-success" role="button">Add to Cart</button>      
+            @if($product->isAvailable())
+                <button type="submit" class="btn btn-success" role="button">В корзину</button>
+             @else
+                <b>Недоступен для заказа</b>
+            @endif
+                  
         </form>
 
 @endsection
