@@ -27,7 +27,12 @@ class Order extends Model
         return $sum;
     }
 
-    public function getFullPrice(){
+    public function changeFullPrice($changePrice){
+        $sum = self::getFullPrice() + $changePrice;
+        session(['full_order_sum' => $sum]);
+    }
+
+    public static function getFullPrice(){
         return session('full_order_sum', 0);
     }
 
