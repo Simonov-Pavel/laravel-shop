@@ -11,21 +11,13 @@ class BasketController extends Controller
 {
     public function bascet(){
         $orderId = session('orderId');
-        if(!is_null($orderId)){
-            $order = Order::findOrFail($orderId);
-            return view('bascet', compact('order'));
-        }else{
-            session()->flash('warning', 'Ваша карзина пуста');
-            return redirect()->route('index');
-        } 
+        $order = Order::findOrFail($orderId);
+        return view('bascet', compact('order'));
         
     }
 
     public function order(){
         $orderId = session('orderId');
-        if(is_null($orderId)){
-            return redirect()->route('index');
-        }
         $order = Order::find($orderId);
         return view('order', compact('order'));
     }
@@ -55,9 +47,6 @@ class BasketController extends Controller
 
     public function bascetRemove($productId){
         $orderId = session('orderId');
-        if(is_null($orderId)){
-            return redirect('bascet');
-        }
         $order = Order::find($orderId);
         $product = Product::find($productId);
         Order::changeFullPrice(-$product->price);
@@ -77,9 +66,6 @@ class BasketController extends Controller
 
     public function bascetConfirm(OrderRequest $request){
         $orderId = session('orderId');
-        if(is_null($orderId)){
-            return redirect()->route('index');
-        }
         $order = Order::find($orderId);
         
         $order->saveOrder($request->name, $request->phone);
