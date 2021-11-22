@@ -89,6 +89,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="count" class="col-sm-2 col-form-label">Количество</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="count" id="count" @isset($product)value="{{ $product->count }}"@endisset placeholder="Введите количество продукта">
+                        @include('includes.error', ['field' => 'count'])
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="image" class="col-sm-2 col-form-label">Изображение</label>
                     <div class="col-sm-10">
                         @isset($product)
