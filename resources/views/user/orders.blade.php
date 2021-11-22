@@ -38,7 +38,7 @@
                 <tr>
                     <td>{{$order->id}}</td>
                     <td>{{$order->created_at->format('d-m-Y H:i')}}</td>
-                    <td>{{$order->getFullPrice()}}</td>
+                    <td>{{$order->calculateFullPrice()}} руб.</td>
                     <td>
                         <a href="{{route('orders.show', $order)}}" class="btn btn-tool"><i class="fas fa-eye text-success"></i></a>
                     </td>

@@ -45,6 +45,7 @@ class Order extends Model
             $this->status = 1;
             $this->save();
             session()->forget('orderId');
+            session()->forget('full_order_sum');
             session()->flash('success', 'Ваш заказ в обработке');
             return true;
         }else return false; 

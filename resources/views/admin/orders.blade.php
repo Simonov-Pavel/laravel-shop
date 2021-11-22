@@ -39,7 +39,7 @@
                     <td>{{$order->id}}</td>
                     <td>{{$order->name}}</td>
                     <td>{{$order->phone}}</td>
-                    <td>{{$order->getFullPrice()}}</td>
+                    <td>{{$order->calculateFullPrice()}} руб.</td>
                     <td>
                         <a href="{{route('admin.order.show', $order)}}" class="btn btn-tool"><i class="fas fa-eye text-success"></i></a>
                         <a href="#" class="btn btn-tool"><i class="fas fa-times text-danger"></i></a>
