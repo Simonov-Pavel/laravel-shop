@@ -6,55 +6,52 @@ use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\Product;
+use App\Classes\Bascet;
 
 class BasketController extends Controller
 {
     public function bascet(){
-        $orderId = session('orderId');
-        $order = Order::findOrFail($orderId);
+        $order = (new Bascet())->getOrder();
         return view('bascet', compact('order'));
         
     }
 
     public function order(){
-        $orderId = session('orderId');
-        $order = Order::find($orderId);
+        $order = (new Bascet())->getOrder();
         return view('order', compact('order'));
     }
 
-    public function bascetAdd($productId){
+    public function bascetAdd(Product $product){
         $orderId = session('orderId');
         if(is_null($orderId)){
             $order = Order::create();
             session(['orderId' => $order->id]);
         }else{
-            $order = Order::find($orderId);
+            $order = Order::findOrFail($orderId);
         }
-        $product = Product::find($productId);
 
         Order::changeFullPrice($product->price);
 
-        if($order->products->contains($productId)){
-            $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
+        if($order->products->contains($product->id)){
+            $pivotRow = $order->products()->where('product_id', $product->id)->first()->pivot;
             $pivotRow->count++;
             $pivotRow->update();
         }else{
-            $order->products()->attach($productId);
+            $order->products()->attach($product->id);
         }
         session()->flash('success', 'Добавлен товар ' . $product->name);
         return redirect('bascet');
     }
 
-    public function bascetRemove($productId){
-        $orderId = session('orderId');
-        $order = Order::find($orderId);
-        $product = Product::find($productId);
+    public function bascetRemove(Product $product){
+        $bascet = new Bascet();
+        $order = $bascet->getOrder();
         Order::changeFullPrice(-$product->price);
-        if($order->products->contains($productId)){
-            $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
+        if($order->products->contains($product->id)){
+            $pivotRow = $order->products()->where('product_id', $product->id)->first()->pivot;
             if($pivotRow->count < 2){
-                $order->removeOrder($productId);
-                $order->products()->detach($productId);   
+                $order->removeOrder($product->id);
+                $order->products()->detach($product->id);   
             }else
                 $pivotRow->count--;
                 $pivotRow->update();
@@ -65,8 +62,7 @@ class BasketController extends Controller
     }
 
     public function bascetConfirm(OrderRequest $request){
-        $orderId = session('orderId');
-        $order = Order::find($orderId);
+        $order = (new Bascet())->getOrder();
         
         $order->saveOrder($request->name, $request->phone);
         

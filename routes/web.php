@@ -27,11 +27,11 @@ Route::middleware(['auth'])->group(function(){
 
 
 Route::group(['prefix'=>'bascet'], function(){
-    Route::post('/add/{id}', [BasketController::class, 'bascetAdd'])->name('bascet-add');
+    Route::post('/add/{product}', [BasketController::class, 'bascetAdd'])->name('bascet-add');
     Route::group(['middleware' => 'bascetNotEmpty'],function(){
         Route::get('/', [BasketController::class, 'bascet'])->name('bascet');
         Route::get('/order', [BasketController::class, 'order'])->name('order');
-        Route::post('/remove/{id}', [BasketController::class, 'bascetRemove'])->name('bascet-remove');
+        Route::post('/remove/{product}', [BasketController::class, 'bascetRemove'])->name('bascet-remove');
         Route::post('/order', [BasketController::class, 'bascetConfirm'])->name('bascet-confirm');
     });
     
