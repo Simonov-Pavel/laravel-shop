@@ -14,7 +14,7 @@ class AlterTableProductsCount extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('count')->default(0)->after('price');
+            $table->unsignedInteger('count')->default(0)->after('price');
             $table->softDeletes();
         });
     }
