@@ -19,12 +19,16 @@ class Order extends Model
         return $query->where('status', 1);
     }
 
-    public function getFullPrice(){
+    public function calculateFullPrice(){
         $sum = 0;
         foreach($this->products as $product){
             $sum += $product->getPriceForCount();
         }
         return $sum;
+    }
+
+    public function getFullPrice(){
+        return session('full_order_sum', 0);
     }
 
     public function saveOrder($name, $phone){
