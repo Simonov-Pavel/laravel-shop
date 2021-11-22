@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->get();
+        $products = Product::with('category')->withTrashed()->get();
         return view('admin.product.products-index', compact('products'));
     }
 
@@ -79,7 +79,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
         $params = $request->all();
         unset($params['image']);
@@ -107,9 +107,20 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        Storage::delete($product->image);
-        $product->delete();
-        session()->flash('warning', "Продукт $product->name удален");
+        dd($product);
+        if($product->deleted_at){
+                Storage::delete($product->image);
+                Product::onlyTrashed()->find($product->id)->forceDelete();
+                session()->flash('warning', "Продукт  $product->name удален полностью");
+            }else{
+                $product->delete();
+                session()->flash('warning', "Продукт $product->name удален");
+            }
+            
+        
+             
+        
+        
         return redirect()->route('products.index');
     }
 }

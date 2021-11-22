@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Product extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = ['name', 'code', 'category_id', 'description', 'image', 'price', 'new', 'hit', 'recomend', 'count'];
 
@@ -52,7 +54,7 @@ class Product extends Model
     }
 
     public function isAvailable(){
-        return $this->count > 0;
+        return !$this->trashed() && $this->count > 0;
     }
 
     public function isNew(){

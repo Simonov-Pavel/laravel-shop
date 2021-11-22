@@ -13,8 +13,8 @@ class OrderController extends Controller
         return view('admin.orders', compact('orders'));
     }
 
-    public function show($orderId){
-        $order = Order::where('id', $orderId)->first();
-        return view('admin.order-show', compact('order'));
+    public function show(Order $order){
+        $products = $order->products()->withTrashed()->get();
+        return view('admin.order-show', compact('order', 'products'));
     }
 }

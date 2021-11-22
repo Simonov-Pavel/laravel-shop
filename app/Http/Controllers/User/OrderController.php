@@ -52,7 +52,8 @@ class OrderController extends Controller
         if(!Auth::user()->order->contains($order)){
             return back();
         }
-        return view('user.order-show', compact('order'));
+        $products = $order->products()->withTrashed()->get();
+        return view('user.order-show', compact('order', 'products'));
     }
 
     /**

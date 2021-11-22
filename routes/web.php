@@ -19,7 +19,7 @@ Route::middleware(['auth'])->group(function(){
     Route::group(['prefix'=>'admin', 'middleware'=>['admin']], function(){
         Route::get('/', [App\Http\Controllers\Admin\MainController::class, 'index'])->name('admin');
         Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.orders');
-        Route::get('/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.order.show');
+        Route::get('/order/{order}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.order.show');
         Route::resource('categories', App\Http\Controllers\Admin\CategoryController::class);
         Route::resource('products', App\Http\Controllers\Admin\ProductController::class);
     });

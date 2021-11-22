@@ -37,14 +37,18 @@
             <tfoot>
                 <tr>
                     <td colspan="4" style="text-align:right">Итого:</td>
-                    <td>{{$order->getFullPrice()}}</td>
+                    <td>{{$order->calculateFullPrice()}}</td>
                 </tr>
             </tfoot>
             <tbody>
-                @foreach($order->products as $product)
-                
+                @foreach($products as $product)
                 <tr>
-                    <td>{{$product->name}}</td>
+                    <td>
+                        <a href="{{ route('product', [$product->category->code, $product->code]) }}">
+                            <img height="56px" src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}">
+                            {{$product->name}}
+                        </a>
+                    </td>
                     <td>{{$product->price}} ₽</td>
                     <td>{{ $product->pivot->count }}</td>
                     <td>{{$product->getPriceForCount()}} ₽</td>

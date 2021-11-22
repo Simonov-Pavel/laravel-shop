@@ -14,8 +14,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin') }}">Главная</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.orders') }}">Заказы</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('user') }}">Главная</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('orders.index') }}">Заказы</a></li>
                         <li class="breadcrumb-item active">Заказ {{ $order->id }}</li>
                     </ol>
                 </div>
@@ -40,25 +40,14 @@
                 </tr>
             </tfoot>
             <tbody>
-                @foreach($order->products as $product)
-                
+            
+                @foreach($products as $product)
                 <tr>
-                    <td>{{$product->name}}</td>
-                    <td>{{$product->price}} ₽</td>
                     <td>
-                        <div class="btn-group form-inline">
-                            <form action="#" method="POST">
-                                <button type="submit" class="btn btn-danger"><span aria-hidden="true">-</span></button>
-                                @csrf                           
-                            </form>
-                            <span class="badge">{{ $product->pivot->count }}</span>
-                            <form action="{{route('bascet-add', $product)}}" method="POST">
-                                <button type="submit" class="btn btn-success"><span aria-hidden="true">+</span></button>
-                                @csrf                         
-                            </form>
-                        </div>
+                        <a href="{{ route('product', [$product->category->code, $product->code]) }}">{{$product->name}}</a>
                     </td>
-                    
+                    <td>{{$product->price}} ₽</td>
+                    <td>{{ $product->pivot->count }}</td>
                     <td>{{$product->getPriceForCount()}} ₽</td>
                 </tr>
                 @endforeach

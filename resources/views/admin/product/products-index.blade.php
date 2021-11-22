@@ -47,16 +47,30 @@
                     <td>{{$product->code}}</td>
                     <td>{{$product->category->name}}</td>
                     <td>{{$product->price}}</td>
-                    <td>{{$product->count}}</td>
+                    <td>
+                    
+                        @if($product->deleted_at)
+                            <a class="btn btn-primary" href="">Востановить?</a>
+                            </br>
+                            </br>
+                            <form action="{{ route('products.destroy', $product) }}" method="post">
+                                @csrf 
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Удалить?</button>
+                            </form>
+                        @else {{$product->count}}
+                        @endif
+                    
+                    </td>
                     <td>
                     <form action="{{ route('products.destroy', $product) }}" method="post">
                         <a href="{{route('products.show', $product)}}" class="btn btn-tool"><i class="fas fa-eye text-success"></i></a>
                         <a href="{{route('products.edit', $product)}}" class="btn btn-tool"><i class="fas fa-pen text-primary"></i></a>
                         
-                            @csrf 
-                            @method('DELETE')
-                            <button type="submit" style="background:transparent; border:none"><i class="fas fa-times text-danger"></i></button>
-                        </form>
+                        @csrf 
+                        @method('DELETE')
+                        <button type="submit" style="background:transparent; border:none"><i class="fas fa-times text-danger"></i></button>
+                    </form>
                         
                     </td>
                 </tr>
