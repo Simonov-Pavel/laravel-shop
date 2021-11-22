@@ -28,16 +28,20 @@ class Bascet
         return $this->order;
     }
 
-    protected function getPivotRow(){
-        return ;
+    protected function getPivotRow($product){
+        return $this->order->products()->where('product_id', $product->id)->first()->pivot;
     }
 
     public function addBascet(Product $product){
         Order::changeFullPrice($product->price);
 
         if($this->order->products->contains($product->id)){
-            $pivotRow = $this->order->products()->where('product_id', $product->id)->first()->pivot;
+            $pivotRow = $this->getPivotRow($product);
             $pivotRow->count++;
+            if($pivotRow->count > $product->count){
+                session()->flash('warning', 'Максимальное количество выбранного товара - ' . $product->name);
+                return false;
+            }
             $pivotRow->update();
         }else{
             $this->order->products()->attach($product->id);
@@ -48,8 +52,9 @@ class Bascet
     public function removeBascet(Product $product){
         Order::changeFullPrice(-$product->price);
         if($this->order->products->contains($product->id)){
-            $pivotRow = $this->order->products()->where('product_id', $product->id)->first()->pivot;
+            $pivotRow = $this->getPivotRow($product);
             if($pivotRow->count < 2){
+                session()->forget('full_order_sum');
                 $this->order->removeOrder($product->id);
                 $this->order->products()->detach($product->id);   
             }else
