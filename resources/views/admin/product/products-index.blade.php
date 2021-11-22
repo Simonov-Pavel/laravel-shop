@@ -34,6 +34,7 @@
                     <th>Код</th>
                     <th>Категория</th>
                     <th>Праис</th>
+                    <th>Количество</th>
                     <th>Действие</th>
                 </tr>
             </thead>
@@ -46,6 +47,7 @@
                     <td>{{$product->code}}</td>
                     <td>{{$product->category->name}}</td>
                     <td>{{$product->price}}</td>
+                    <td>{{$product->count}}</td>
                     <td>
                     <form action="{{ route('products.destroy', $product) }}" method="post">
                         <a href="{{route('products.show', $product)}}" class="btn btn-tool"><i class="fas fa-eye text-success"></i></a>
