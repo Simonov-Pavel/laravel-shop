@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class BascetNotEmpty
 {
@@ -16,6 +17,14 @@ class BascetNotEmpty
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        $orderId = session('orderId');
+        if(!is_null($orderId)){
+            $order = Order::findOrFail($orderId);
+            if($order->products()->count() > 0){
+                return $next($request);
+            }
+        }
+        session()->flash('warning', 'Ваша корзина пуста');
+        return redirect()->route('index');
     }
 }
