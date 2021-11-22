@@ -47,6 +47,10 @@ class Product extends Model
         $this->attributes['recomend'] = $value === 'on' ? 1 : 0;
     }
 
+    public function isAvailable(){
+        return $this->count > 0;
+    }
+
     public function isNew(){
         return $this->new === 1;
     }
