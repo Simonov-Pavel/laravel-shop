@@ -22,41 +22,17 @@ class BasketController extends Controller
     }
 
     public function bascetAdd(Product $product){
-        $orderId = session('orderId');
-        if(is_null($orderId)){
-            $order = Order::create();
-            session(['orderId' => $order->id]);
-        }else{
-            $order = Order::findOrFail($orderId);
-        }
-
-        Order::changeFullPrice($product->price);
-
-        if($order->products->contains($product->id)){
-            $pivotRow = $order->products()->where('product_id', $product->id)->first()->pivot;
-            $pivotRow->count++;
-            $pivotRow->update();
-        }else{
-            $order->products()->attach($product->id);
-        }
-        session()->flash('success', 'Добавлен товар ' . $product->name);
+        $bascet = new Bascet(true);
+        $order = $bascet->getOrder();
+        $bascet->addBascet($product);
+        
         return redirect('bascet');
     }
 
     public function bascetRemove(Product $product){
         $bascet = new Bascet();
         $order = $bascet->getOrder();
-        Order::changeFullPrice(-$product->price);
-        if($order->products->contains($product->id)){
-            $pivotRow = $order->products()->where('product_id', $product->id)->first()->pivot;
-            if($pivotRow->count < 2){
-                $order->removeOrder($product->id);
-                $order->products()->detach($product->id);   
-            }else
-                $pivotRow->count--;
-                $pivotRow->update();
-        }
-        session()->flash('warning', 'Удален товар ' . $product->name);
+        $bascet->removeBascet($product);
         
         return redirect('bascet');
     }

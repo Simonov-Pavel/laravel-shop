@@ -48,7 +48,10 @@ class Order extends Model
             session()->forget('full_order_sum');
             session()->flash('success', 'Ваш заказ в обработке');
             return true;
-        }else return false; 
+        }else{
+            session()->flash('warning', 'ERROR!!!');
+            return false; 
+        } 
     }
 
     public function removeOrder($productId){
