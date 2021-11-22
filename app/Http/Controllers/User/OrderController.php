@@ -49,6 +49,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+        if(!Auth::user()->order->contains($order)){
+            return back();
+        }
         return view('user.order-show', compact('order'));
     }
 
