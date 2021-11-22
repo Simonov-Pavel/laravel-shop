@@ -36,7 +36,7 @@
             <tfoot>
                 <tr>
                     <td colspan="3" style="text-align:right">Итого:</td>
-                    <td>{{$order->getFullPrice()}} ₽</td>
+                    <td>{{$order->calculateFullPrice()}} ₽</td>
                 </tr>
             </tfoot>
             <tbody>
