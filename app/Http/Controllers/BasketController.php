@@ -39,6 +39,9 @@ class BasketController extends Controller
             $order = Order::find($orderId);
         }
         $product = Product::find($productId);
+
+        Order::changeFullPrice($product->price);
+
         if($order->products->contains($productId)){
             $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
             $pivotRow->count++;
@@ -57,6 +60,7 @@ class BasketController extends Controller
         }
         $order = Order::find($orderId);
         $product = Product::find($productId);
+        Order::changeFullPrice(-$product->price);
         if($order->products->contains($productId)){
             $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
             if($pivotRow->count < 2){
