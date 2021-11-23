@@ -40,11 +40,12 @@ class Bascet
                 session()->flash('warning', 'Максимальное количество выбранного товара - ' . $product->name);
                 return false;
             }
-            Order::changeFullPrice($product->price);
+            
             $pivotRow->update();
         }else{
             $this->order->products()->attach($product->id);
         }
+        Order::changeFullPrice($product->price);
         session()->flash('success', 'Добавлен товар ' . $product->name);
     }
 

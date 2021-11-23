@@ -9,6 +9,7 @@ use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\Product;
 use App\Classes\Bascet;
+use App\Mail\OrderCreated;
 
 class BasketController extends Controller
 {

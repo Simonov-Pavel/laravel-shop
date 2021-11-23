@@ -11,6 +11,7 @@ class OrderCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
+
     /**
      * Create a new message instance.
      *
@@ -28,6 +29,6 @@ class OrderCreated extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.order_created');
+        return $this->view('mail.order-created');
     }
 }
