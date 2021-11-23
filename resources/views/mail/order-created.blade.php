@@ -4,15 +4,12 @@
 
 <p>Ваш заказ :</p>
 <table style="width:100%">
-    <thead>
         <tr style="width:100%">
             <th>Название</th>
             <th>Кол-во</th>
             <th>Цена</th>
         </tr>
-    </thead>
     <hr>
-    <tbody>
     @foreach($order->products()->with('category')->get() as $product)
         <tr style="width:100%">
             <td>{{$product->name}}</td>
@@ -22,8 +19,7 @@
         <hr>
     @endforeach
         <tr style="width:100%">
-            <td colspan="2">Общая стоимость:</td>
+            <td>Общая стоимость:</td>
             <td>{{$fullSum}} ₽</td>
         </tr>
-    </tbody>
 </table>
