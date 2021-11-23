@@ -63,4 +63,12 @@ class Bascet
         }
         session()->flash('warning', 'Удален товар ' . $product->name);
     }
+
+    public function updateProduct(){
+        foreach($this->order->products as $product){
+            $product->count -= $this->getPivotRow($product)->count;
+        }
+        $this->order->products->map->save();
+        return true;
+    }
 }
