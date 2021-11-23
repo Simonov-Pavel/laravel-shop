@@ -39,7 +39,7 @@ class BasketController extends Controller
 
     public function bascetConfirm(OrderRequest $request){
         $order = (new Bascet())->getOrder();
-        
+        $order->updateProduct();
         $order->saveOrder($request->name, $request->phone);
         
         return redirect()->route('index');
