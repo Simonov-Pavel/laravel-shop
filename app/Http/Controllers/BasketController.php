@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\Product;
@@ -44,7 +45,7 @@ class BasketController extends Controller
         $order = $bascet->getOrder();
         $bascet->updateProduct();
         $order->saveOrder($request->name, $request->phone);
-        
+        Mail::to($email)->send(new OrderCreated());
         return redirect()->route('index');
     }
 }

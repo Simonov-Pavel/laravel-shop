@@ -36,7 +36,7 @@ class MainController extends Controller
     }
 
     public function product($catategory, $productCode){
-        $product = Product::withTrashed()->byCode($productCode)->first();
+        $product = Product::withTrashed()->byCode($productCode)->firstOrFail();
         return view('product', compact('product'));
     }
 
