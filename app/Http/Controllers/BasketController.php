@@ -46,7 +46,7 @@ class BasketController extends Controller
         $order = $bascet->getOrder();
         $bascet->updateProduct();
         $order->saveOrder($request->name, $request->phone);
-        Mail::to($email)->send(new OrderCreated());
+        Mail::to($email)->send(new OrderCreated($request->name, $order));
         return redirect()->route('index');
     }
 }
