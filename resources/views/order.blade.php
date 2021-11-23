@@ -18,8 +18,8 @@
                                 <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control">
                             </div>
                             @error('name')
-						<div class="text-danger">{{$message}}</div>
-						@enderror
+						        <div class="text-danger">{{$message}}</div>
+						    @enderror
                         </div>
                         <br>
                         <br>
@@ -32,6 +32,16 @@
 						        <div class="text-danger">{{$message}}</div>
 						    @enderror
                         </div>
+                        @guest
+                        <br>
+                        <br>
+                        <div class="form-group">
+                            <label for="email" class="control-label col-lg-offset-3 col-lg-2">Email: </label>
+                            <div class="col-lg-4">
+                                <input type="email" name="email" id="email" value="{{old('email')}}" class="form-control">
+                            </div>
+                        </div>
+                        @endguest
                     </div>
                     <br>
                     @csrf                  
