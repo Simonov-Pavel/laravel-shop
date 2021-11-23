@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\Product;
@@ -38,6 +39,7 @@ class BasketController extends Controller
     }
 
     public function bascetConfirm(OrderRequest $request){
+        $email = Auth::check() ? Auth::user()->email : $request->email;
         $bascet = new Bascet();
         $order = $bascet->getOrder();
         $bascet->updateProduct();
