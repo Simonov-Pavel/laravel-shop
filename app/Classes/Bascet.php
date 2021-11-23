@@ -33,8 +33,6 @@ class Bascet
     }
 
     public function addBascet(Product $product){
-        Order::changeFullPrice($product->price);
-
         if($this->order->products->contains($product->id)){
             $pivotRow = $this->getPivotRow($product);
             $pivotRow->count++;
@@ -42,6 +40,7 @@ class Bascet
                 session()->flash('warning', 'Максимальное количество выбранного товара - ' . $product->name);
                 return false;
             }
+            Order::changeFullPrice($product->price);
             $pivotRow->update();
         }else{
             $this->order->products()->attach($product->id);
