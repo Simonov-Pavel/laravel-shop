@@ -17,7 +17,7 @@
         @else
             <span><h3>Недоступен для заказа</h3></span><br>
             <span><b>Сообщить мне о поступлении этого товара</b></span><br>
-             <form action="" method="post">
+             <form action="{{ route('subscript') }}" method="post">
                  @csrf
                  <input type="email" name="email">
                  <button type="submit">Отравить</button>
