@@ -12,7 +12,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::get('/', [MainController::class, 'index'])->name('index');
-Route::post('/', [SubscriptController::class, 'store'])->name('subscript');
+Route::post('/{product}', [SubscriptController::class, 'store'])->name('subscript');
 
 Route::middleware(['auth'])->group(function(){
     Route::group(['prefix'=>'account'], function(){
