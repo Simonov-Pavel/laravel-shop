@@ -11,6 +11,8 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('locale/{locale}', [MainController::class, 'changeLocale'])->name('locale');
+
 Route::get('/', [MainController::class, 'index'])->name('index');
 Route::post('/{product}', [SubscriptController::class, 'store'])->name('subscript');
 
