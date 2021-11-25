@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Fasades\Mail;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Product;
+use App\Mail\SubscriptionProduct;
 
 class Subscription extends Model
 {
