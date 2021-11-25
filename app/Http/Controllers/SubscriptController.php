@@ -6,7 +6,7 @@ use App\Models\Subscription;
 use App\Models\Product;
 use App\Http\Requests\SubscriptionRequest;
 
-class Subscript extends Controller
+class SubscriptController extends Controller
 {
     public function store(SubscriptionRequest $request, Product $product)
     {

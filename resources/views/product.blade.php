@@ -17,10 +17,12 @@
         @else
             <span><h3>Недоступен для заказа</h3></span><br>
             <span><b>Сообщить мне о поступлении этого товара</b></span><br>
-             <form action="{{ route('subscript') }}" method="post">
+             <form action="{{ route('subscript', $product) }}" method="post">
+                @include('includes.error', ['field' => 'email'])
                  @csrf
-                 <input type="email" name="email">
+                 <input type="email" name="email" @error('email') style="border-color: #f00" value="{{ old('email') }}" @enderror>
                  <button type="submit">Отравить</button>
+                 
              </form>
         @endif
                   
