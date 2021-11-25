@@ -10,8 +10,10 @@ class SubscriptController extends Controller
 {
     public function store(SubscriptionRequest $request, Product $product)
     {
-        $data = $request->all();
-        $data['product_id'] = $product->id;
-        Subscription::create($data);
+        Subscription::create([
+            'email' => $request->email,
+            'product_id' => $product->id
+        ]);
+        return redirect()->back()->with('success', "Спасибо, мы сообщим вам о поступлении $product->name");
     }
 }

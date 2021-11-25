@@ -17,7 +17,7 @@ class CreateSubscriptionsTable extends Migration
             $table->id();
             $table->string('email');
             $table->integer('product_id');
-            $table->tinyInteger('status')->defaul(0);
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
