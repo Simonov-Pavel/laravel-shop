@@ -24,7 +24,7 @@ class SubscriptionRequesr extends FormRequest
     public function rules()
     {
         return [
-            'email'=>'email',
+            'email'=>'required|email',
         ];
     }
 
