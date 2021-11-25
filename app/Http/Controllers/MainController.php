@@ -40,5 +40,14 @@ class MainController extends Controller
         return view('product', compact('product'));
     }
 
+    public function changeLocale($locale){
+        
+        $locales = ['ru', 'en'];
+        if(!in_array($locale, $locales)){
+            $locale = config('app.locale');
+        }
+        session(['locale'=>$locale]);
+        return redirect()->back();
+    }
     
 }
