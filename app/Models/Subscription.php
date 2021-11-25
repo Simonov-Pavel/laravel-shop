@@ -10,4 +10,8 @@ class Subscription extends Model
     use HasFactory;
 
     protected $fillable = ['email', 'product_id'];
+
+    public function scopeActiveByProductId($query, $productId){
+        return $query->where('status', 0)->where('product_id', $productId);
+    }
 }
