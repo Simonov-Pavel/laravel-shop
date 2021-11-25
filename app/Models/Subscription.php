@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Fasades\Mail;
 use App\Models\Product;
 
 class Subscription extends Model
@@ -19,6 +20,7 @@ class Subscription extends Model
     public static function sendEmailBySubscription(Product $product){
         $subscriptions = self::activeByProductId($product->id)->get();
         foreach($subscriptions as $subscription){
+            Mail::to($subscription->email)->send(new SubscriptionProduct($product));
             $subscription->status = 1;
             $subscription -> save();
         }
