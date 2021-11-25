@@ -25,7 +25,7 @@
                 <li @routeactive('categor*')><a href="{{route('categories')}}">Категории</a></li>
                 <li @routeactive('bascet')><a href="{{route('bascet')}}">В корзину</a></li>
                 <!--<li><a href="http://internet-shop.tmweb.ru/reset">Сбросить проект в начальное состояние</a></li>-->
-                <li><a href="">en</a></li>
+                <li><a href="{{ route('locale') }}">en</a></li>
 
                 <!--<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">₽<span class="caret"></span></a>
