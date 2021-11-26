@@ -2,13 +2,13 @@
     <div class="thumbnail">
         <div class="labels">
             @if($product->isNew())
-                <span class="badge badge-success">Новинка</span>
+                <span class="badge badge-success">@lang('main.new')</span>
             @endif
             @if($product->isHit())
-                <span class="badge badge-warning">Хит</span>
+                <span class="badge badge-warning">@lang('main.hit')</span>
             @endif
             @if($product->isRecomend())
-                <span class="badge badge-danger">Рекомендуем</span>
+                <span class="badge badge-danger">@lang('main.recommend')</span>
             @endif
         </div>
         <img src="{{Storage::url($product->image)}}">
@@ -19,11 +19,11 @@
                 <form action="{{route('bascet-add', $product)}}" method="POST">
                     @csrf
                     @if($product->isAvailable())
-                        <button type="submit" class="btn btn-primary" role="button">В корзину</button>
+                        <button type="submit" class="btn btn-primary" role="button">@lang('main.in_bascet')</button>
                     @else
-                        Недоступен для заказа
+                    @lang('main.not_order')
                     @endif
-                    <a href="{{route('product', [isset($category) ? $category->code : $product->category->code, $product->code])}}" class="btn btn-default" role="button">Подробнее</a>
+                    <a href="{{route('product', [isset($category) ? $category->code : $product->category->code, $product->code])}}" class="btn btn-default" role="button">@lang('main.details')</a>
                 </form>
                 
             </p>

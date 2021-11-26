@@ -20,4 +20,6 @@ return [
     'recommend'=>'Recommend',
     'filter'=>'Filter',
     'reset'=>'Reset',
+    'not_order'=>'Unavailable for order',
+    'details'=>'More detailed',
 ];
