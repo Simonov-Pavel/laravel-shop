@@ -12,4 +12,12 @@ return [
     'admin_panel'=>'Admin panel',
     'personal_account'=>'Personal account',
     'logout'=>'Logout',
+    'main'=>'Main',
+    'price_from'=>'Price from',
+    'to'=>'Price to',
+    'hit'=>'Hit',
+    'new'=>'New',
+    'recommend'=>'Recommend',
+    'filter'=>'Filter',
+    'reset'=>'Reset',
 ];
