@@ -55,6 +55,14 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="name_en" class="col-sm-2 col-form-label">Категория EN</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name_en" id="name_en" 
+                        value="{{ old('name_en', isset($category)? $category->name_en : null) }}" placeholder="Введите наименование категории EN">
+                        @include('includes.error', ['field' => 'name_en'])
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="code" class="col-sm-2 col-form-label">Код</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="code" id="code" 
@@ -68,6 +76,14 @@
                         <input type="text" class="form-control" name="description" id="description" 
                         value="{{ old('description', isset($category) ? $category->description : null) }}" placeholder="Введите описание категории">
                         @include('includes.error', ['field' => 'description'])
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="description_en" class="col-sm-2 col-form-label">Описание EN</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="description_en" id="description_en" 
+                        value="{{ old('description_en', isset($category) ? $category->description_en : null) }}" placeholder="Введите описание категории EN">
+                        @include('includes.error', ['field' => 'description_en'])
                     </div>
                 </div>
                 <div class="form-group row">
