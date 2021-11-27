@@ -54,6 +54,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="name_en" class="col-sm-2 col-form-label">Найменование EN</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name_en" id="name_en" @isset($product)value="{{ $product->name_en }}"@endisset placeholder="Введите наименование продукта En">
+                        @include('includes.error', ['field' => 'name_en'])
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="code" class="col-sm-2 col-form-label">Код</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="code" id="code" @isset($product)value="{{ $product->code }}"@endisset placeholder="Введите код продукта">
@@ -79,6 +86,13 @@
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="description" id="description" @isset($product)value="{{ $product->description }}"@endisset placeholder="Введите описание продукта">
                         @include('includes.error', ['field' => 'description'])
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="description_en" class="col-sm-2 col-form-label">Описание EN</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="description_en" id="description_en" @isset($product)value="{{ $product->description_en }}"@endisset placeholder="Введите описание продукта EN">
+                        @include('includes.error', ['field' => 'description_en'])
                     </div>
                 </div>
                 <div class="form-group row">
