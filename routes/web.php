@@ -5,9 +5,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\SubscriptController;
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware(['locale'])->group(function(){
 
 require __DIR__.'/auth.php';
 
@@ -48,4 +46,4 @@ Route::group(['prefix' => 'categories'], function(){
     Route::get('/{category}/{product}', [MainController::class, 'product'])->name('product');
 });
 
-
+});
