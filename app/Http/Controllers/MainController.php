@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\App;
 
 class MainController extends Controller
 {
@@ -41,11 +42,6 @@ class MainController extends Controller
     }
 
     public function changeLocale($locale){
-        
-        $locales = ['ru', 'en'];
-        if(!in_array($locale, $locales)){
-            $locale = config('app.locale');
-        }
         session(['locale'=>$locale]);
         return redirect()->back();
     }
