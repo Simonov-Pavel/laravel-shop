@@ -17,16 +17,7 @@ class Localization
      */
     public function handle(Request $request, Closure $next)
     {
-        $locales = ['ru', 'en'];
-        $locale = session('locale');
-        if(in_array($locale, $locales)){
-            App::setLocale($locale);
-            if($locale == 'ru'){
-                session()->forget('locale');
-            }
-        }else{
-            session()->forget('locale');
-        }
+        App::setLocale(session('locale'));
         return $next($request);
     }
 }

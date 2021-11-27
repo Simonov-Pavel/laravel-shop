@@ -42,6 +42,10 @@ class MainController extends Controller
     }
 
     public function changeLocale($locale){
+        $locales = ['ru', 'en'];
+        if(!in_array($locale, $locales)){
+            $locale = config('locale');
+        }
         session(['locale'=>$locale]);
         return redirect()->back();
     }
