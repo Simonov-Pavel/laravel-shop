@@ -13,7 +13,7 @@
         </div>
         <img src="{{Storage::url($product->image)}}">
         <div class="caption">
-            <h3>{{$product->name}}</h3>
+            <h3>{{$product->__('name')}}</h3>
             <p>{{$product->price}} ₽</p>
             <p>
                 <form action="{{route('bascet-add', $product)}}" method="POST">

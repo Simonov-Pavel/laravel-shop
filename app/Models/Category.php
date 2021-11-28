@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\LocalizationTrait;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, LocalizationTrait;
 
     protected $fillable = ['name', 'code', 'description', 'image', 'name_en', 'description_en'];
 

@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Traits\LocalizationTrait;
 
 
 class Product extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, LocalizationTrait, SoftDeletes;
 
     protected $fillable = ['name', 'code', 'category_id', 'description', 'image', 'price', 'new', 'hit', 
     'recomend', 'count', 'name_en', 'description_en'];

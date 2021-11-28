@@ -4,11 +4,11 @@
 
 @section('content')
 
-        <h1>{{$product->name}}</h1>
-        <h2>{{$product->category->name}}</h2>
+        <h1>{{ $product->__('name') }}</h1>
+        <h2>{{$product->category->__('name')}}</h2>
         <p>Price: <b>{{$product->price}} ₽</b></p>
         <img src="{{ Storage::url($product->image) }}">
-        <p>{{$product->description}}</p>
+        <p>{{$product->__('description')}}</p>
         @if($product->isAvailable())
             <form action="{{route('bascet-add', $product)}}" method="POST">
                 @csrf
