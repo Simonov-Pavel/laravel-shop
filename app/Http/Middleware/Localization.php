@@ -17,7 +17,12 @@ class Localization
      */
     public function handle(Request $request, Closure $next)
     {
-        App::setLocale(session('locale'));
+        if(session('locale')){
+            App::setLocale(session('locale'));
+        }else {
+            App::setLocale(config('app.locale'));
+        }
+        
         return $next($request);
     }
 }

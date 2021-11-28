@@ -46,7 +46,12 @@ class MainController extends Controller
         if(!in_array($locale, $locales)){
             $locale = config('locale');
         }
-        session(['locale'=>$locale]);
+        if($locale == 'ru'){
+            session()->forget('locale');
+        }else{
+            session(['locale'=>$locale]);
+        }
+        
         return redirect()->back();
     }
     
