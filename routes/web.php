@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\SubscriptController;
+use Illuminate\Support\Facades\App;
 
 Route::middleware(['locale'])->group(function(){
 
