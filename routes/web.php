@@ -6,11 +6,13 @@ use App\Http\Controllers\BasketController;
 use App\Http\Controllers\SubscriptController;
 use Illuminate\Support\Facades\App;
 
-Route::middleware(['locale'])->group(function(){
+Route::get('locale/{locale}', [MainController::class, 'changeLocale'])->name('locale');
+
+Route::group(['prefix'=>LocaleService::locale(), 'middleware'=>['locale']], function(){
 
 require __DIR__.'/auth.php';
 
-Route::get('locale/{locale}', [MainController::class, 'changeLocale'])->name('locale');
+
 
 Route::get('/', [MainController::class, 'index'])->name('index');
 Route::post('/{product}', [SubscriptController::class, 'store'])->name('subscript');
