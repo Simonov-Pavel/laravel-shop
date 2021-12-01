@@ -176,7 +176,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Services\Locale\LocaleServiceProvider::class,
 
     ],
 
@@ -232,7 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'LocaleService' => App\Services\Locale\LocaleFacade::class,
+        
     ],
 
 ];
