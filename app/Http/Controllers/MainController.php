@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 
 class MainController extends Controller
 {
@@ -48,8 +49,10 @@ class MainController extends Controller
         }
         if($locale == 'ru'){
             session()->forget('locale');
+            Config::set('app.routeLang', '');
         }else{
             session(['locale'=>$locale]);
+            Config::set('app.routeLang', session('locale'));
         }
         
         return redirect()->back();

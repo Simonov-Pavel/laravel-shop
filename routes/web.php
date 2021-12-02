@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\App;
 
 Route::get('locale/{locale}', [MainController::class, 'changeLocale'])->name('locale');
 
-Route::middleware(['locale'])->group(function(){
+Route::group(['middleware' => 'locale'],function(){
 
 require __DIR__.'/auth.php';
 
