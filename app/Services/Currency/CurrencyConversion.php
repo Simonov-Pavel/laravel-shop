@@ -2,8 +2,10 @@
 
 namespace App\Services\Currency;
 
-class Currency {
-    public function convert($sum, $originCurrencyCode = 'RUB', $targetCurrencyCode = null){
+use App\Models\Currency;
+
+class CurrencyConversion {
+    public static function convert($sum, $originCurrencyCode = 'RUB', $targetCurrencyCode = null){
         $originCurrency = Currency::byCode($originCurrencyCode)->first();
         if(is_null($targetCurrencyCode)){
             $targetCurrencyCode = session('currency', 'RUB');
