@@ -27,14 +27,12 @@
                 <!--<li><a href="http://internet-shop.tmweb.ru/reset">Сбросить проект в начальное состояние</a></li>-->
                 <li><a href="{{ route('locale', __('main.set_lang')) }}">@lang('main.set_lang')</a></li>
 
-                <!--<li class="dropdown">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">₽<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="http://internet-shop.tmweb.ru/currency/RUB">₽</a></li>
-                        <li><a href="http://internet-shop.tmweb.ru/currency/USD">$</a></li>
-                        <li><a href="http://internet-shop.tmweb.ru/currency/EUR">€</a></li>
+                        <li><a href="#">₽</a></li>
                     </ul>
-                </li>-->
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @guest
