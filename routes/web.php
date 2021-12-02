@@ -7,6 +7,7 @@ use App\Http\Controllers\SubscriptController;
 use Illuminate\Support\Facades\App;
 
 Route::get('locale/{locale}', [MainController::class, 'changeLocale'])->name('locale');
+Route::get('currency/{currency}', [MainController::class, 'changeCurrency'])->name('currency');
 
 Route::group(['middleware' => 'locale'],function(){
 
