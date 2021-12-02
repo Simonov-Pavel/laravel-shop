@@ -38,14 +38,14 @@
                             </form>
                         </div>
                     </td>
-                    <td>{{$product->price}} ₽</td>
-                    <td>{{$product->getPriceForCount()}} ₽</td>
+                    <td>{{$product->price}}  {{App\Services\Currency\CurrencyConversion::getCurrencySymbol()}}</td>
+                    <td>{{$product->getPriceForCount()}}  {{App\Services\Currency\CurrencyConversion::getCurrencySymbol()}}</td>
                 </tr>
                 @endforeach
                 
                 <tr>
                     <td colspan="3">Общая стоимость:</td>
-                    <td>{{$order->getFullPrice()}} ₽</td>
+                    <td>{{$order->calculateFullPrice()}}  {{App\Services\Currency\CurrencyConversion::getCurrencySymbol()}}</td>
                 </tr>
             </tbody>
         </table>

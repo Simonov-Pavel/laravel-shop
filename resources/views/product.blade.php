@@ -6,7 +6,7 @@
 
         <h1>{{ $product->__('name') }}</h1>
         <h2>{{$product->category->__('name')}}</h2>
-        <p>Price: <b>{{$product->price}} ₽</b></p>
+        <p>Price: <b>{{$product->price}} {{App\Services\Currency\CurrencyConversion::getCurrencySymbol()}}</b></p>
         <img src="{{ Storage::url($product->image) }}">
         <p>{{$product->__('description')}}</p>
         @if($product->isAvailable())
