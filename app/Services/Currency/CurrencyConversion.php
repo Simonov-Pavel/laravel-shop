@@ -14,4 +14,9 @@ class CurrencyConversion {
 
         return $sum * $originCurrency->rate / $targetCurrency->rate;
     }
+
+    public static function getCurrencySymbol(){
+        $currency = Currency::byCode(session('currency', 'RUB'))->first();
+        return $currency->symbol;
+    }
 }
