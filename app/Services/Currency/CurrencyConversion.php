@@ -5,18 +5,36 @@ namespace App\Services\Currency;
 use App\Models\Currency;
 
 class CurrencyConversion {
+
+    protected static $container;
+
+    public static function loadContainer(){
+        if(is_null(self::$container)){
+            $currensies = Currency::get();
+            foreach($currensies as $currency){
+                self::$container[$currency->code] = $currency;
+            }
+        }
+    }
+
+    public static function getCurrencies(){
+        return self::$container;
+    }
+
     public static function convert($sum, $originCurrencyCode = 'RUB', $targetCurrencyCode = null){
-        $originCurrency = Currency::byCode($originCurrencyCode)->first();
+        self::loadContainer();
+        $originCurrency = self::$container[$originCurrencyCode];
         if(is_null($targetCurrencyCode)){
             $targetCurrencyCode = session('currency', 'RUB');
         }
-        $targetCurrency = Currency::byCode($targetCurrencyCode)->first();
+        $targetCurrency = self::$container[$targetCurrencyCode];;
 
         return $sum * $originCurrency->rate / $targetCurrency->rate;
     }
 
     public static function getCurrencySymbol(){
-        $currency = Currency::byCode(session('currency', 'RUB'))->first();
+        self::loadContainer();
+        $currency = self::$container[session('currency', 'RUB')];
         return $currency->symbol;
     }
 }
