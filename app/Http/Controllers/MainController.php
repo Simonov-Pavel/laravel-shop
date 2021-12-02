@@ -57,5 +57,10 @@ class MainController extends Controller
         
         return redirect()->back();
     }
+
+    public function changeCurrency($currencyCode){
+        session(['cyrrency'=>$currencyCode]);
+        return redirect()->back();
+    }
     
 }
