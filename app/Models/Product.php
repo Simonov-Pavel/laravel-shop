@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Traits\LocalizationTrait;
+use pp\Services\Currency\Currency;
 
 
 class Product extends Model
@@ -68,5 +69,9 @@ class Product extends Model
 
     public function isRecomend(){
         return $this->recomend === 1;
+    }
+
+    public function getPriceAttribute($value){
+        return Currency::convert($value);
     }
 }
