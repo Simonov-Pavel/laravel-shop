@@ -49,17 +49,15 @@ class MainController extends Controller
         }
         if($locale == 'ru'){
             session()->forget('locale');
-            Config::set('app.routeLang', '');
         }else{
             session(['locale'=>$locale]);
-            Config::set('app.routeLang', session('locale'));
         }
         
         return redirect()->back();
     }
 
     public function changeCurrency($currencyCode){
-        session(['cyrrency'=>$currencyCode]);
+        session(['currency'=>$currencyCode]);
         return redirect()->back();
     }
     
