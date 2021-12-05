@@ -38,4 +38,13 @@ class CurrencyConversion {
         $currency = self::$container[session('currency', 'RUB')];
         return $currency->symbol;
     }
+
+    public static function getBaseCurrency(){
+        self::loadContainer();
+        foreach(self::$container as $code=>$currency){
+            if($currency->isMain()){
+                return $currency;
+            }
+        }
+    }
 }
