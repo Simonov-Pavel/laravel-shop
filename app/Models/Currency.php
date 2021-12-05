@@ -9,4 +9,8 @@ class Currency extends Model
     public function scopeByCode($query, $code){
         return $query->where('code', $code);
     }
+
+    public function isMain(){
+        return $this->main === 1;
+    }
 }
