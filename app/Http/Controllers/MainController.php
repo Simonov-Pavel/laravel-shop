@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Config;
 class MainController extends Controller
 {
     public function index(Request $request){
-        \App\Services\Currency\CurrencyRates::getRates();
         $productsQuery = Product::with('category');
         if($request->filled('price_from')){
             $productsQuery->where('price', '>=', $request->price_from);
