@@ -9,19 +9,17 @@ class Bascet
 {
     protected $order;
 
-    public function __construct($order=false){
+    public function __construct($createOrder=false){
         
-        $orderId = session('orderId');
-        if($order){
-            if(is_null($orderId)){
-                $this->order = Order::create();
-                session(['orderId' => $this->order->id]);
-            }else{
-                $this->order = Order::findOrFail($orderId);
+        $order = session('order');
+            if(is_null($order) && $createOrder){
+                $data = [];
+                if(Auth::check()){
+                    $data['user_id'] = Auth::id();
+                }
+                $this->order = Order::create($data);
+                session(['order' => $this->order]);
             }
-        }else{
-            $this->order = Order::findOrFail($orderId);
-        }
     }
 
     public function getOrder(){
