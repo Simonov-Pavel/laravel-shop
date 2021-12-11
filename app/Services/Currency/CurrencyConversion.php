@@ -27,7 +27,7 @@ class CurrencyConversion {
         self::loadContainer();
         $originCurrency = self::$container[$originCurrencyCode];
 
-        if($originCurrency->rate !=0 || $originCurrency->updated_at->startOfDay() != Carbon::now()->startOfDay()){
+        if($originCurrency->rate == 0 || $originCurrency->updated_at->startOfDay() != Carbon::now()->startOfDay()){
             CurrencyRates::getRates();
             self::loadContainer();
             $originCurrency = self::$container[$originCurrencyCode];
