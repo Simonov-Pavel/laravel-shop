@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\SubscriptController;
-use Illuminate\Support\Facades\App;
+//use Illuminate\Support\Facades\App;
 
 Route::get('locale/{locale}', [MainController::class, 'changeLocale'])->name('locale');
 Route::get('currency/{currency}', [MainController::class, 'changeCurrency'])->name('currency');
