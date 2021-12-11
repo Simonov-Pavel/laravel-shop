@@ -21,7 +21,7 @@ class CurrencyRates{
                     throw new Exception('There is a problem with currency ' . $currency->code);
                 }else{
                     $currency->update(['rate' => $rates[$currency->code]]);
-                    $currency->touch();
+                      $currency->touch();
                 } 
 
             }

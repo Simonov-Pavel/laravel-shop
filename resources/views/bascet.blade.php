@@ -17,12 +17,12 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($order->products()->with('category')->get() as $product)
+                @foreach($order->products as $product)
                 <tr>
                     <td>
                         <a href="{{route('product', [$product->category->code, $product->code])}}">
                             <img height="56px" src="{{Storage::url($product->image)}}">
-                            {{$product->name}}
+                            {{$product->__('name')}}
                         </a>
                     </td>
                     <td>
@@ -31,7 +31,7 @@
                                 <button type="submit" class="btn btn-danger"><span  class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
                                 @csrf                           
                             </form>
-                            <span class="badge">{{ $product->pivot->count }}</span>
+                            <span class="badge">{{ $product->countInOrder }}</span>
                             <form action="{{route('bascet-add', $product)}}" method="POST">
                                 <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                                 @csrf                         
@@ -39,13 +39,13 @@
                         </div>
                     </td>
                     <td>{{$product->price}}  {{App\Services\Currency\CurrencyConversion::getCurrencySymbol()}}</td>
-                    <td>{{$product->getPriceForCount()}}  {{App\Services\Currency\CurrencyConversion::getCurrencySymbol()}}</td>
+                    <td>{{$product->price * $product->countInOrder}}  {{App\Services\Currency\CurrencyConversion::getCurrencySymbol()}}</td>
                 </tr>
                 @endforeach
                 
                 <tr>
                     <td colspan="3">Общая стоимость:</td>
-                    <td>{{$order->calculateFullPrice()}}  {{App\Services\Currency\CurrencyConversion::getCurrencySymbol()}}</td>
+                    <td>{{$order->getFullPrice()}}  {{App\Services\Currency\CurrencyConversion::getCurrencySymbol()}}</td>
                 </tr>
             </tbody>
         </table>

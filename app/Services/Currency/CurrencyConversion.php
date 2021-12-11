@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 class CurrencyConversion {
 
+    public const DEFAULT_CURRENCY_CODE = "EUR";
     protected static $container;
 
     public static function loadContainer(){
@@ -23,18 +24,35 @@ class CurrencyConversion {
         return self::$container;
     }
 
-    public static function convert($sum, $originCurrencyCode = 'EUR', $targetCurrencyCode = null){
+    public static function getCurrencyFromSession(){
+        return session('currency', 'EUR');
+    }
+
+    public static function getCurrentCurrencyFromSession(){
+        self::loadContainer();
+        $currencyCode = self::getCurrencyFromSession();
+        foreach(self::$container as $currency){
+            if($currency->code ===$currencyCode){
+                return $currency;
+            }
+        }
+    }
+
+    public static function convert($sum, $originCurrencyCode = self::DEFAULT_CURRENCY_CODE, $targetCurrencyCode = null){
         self::loadContainer();
         $originCurrency = self::$container[$originCurrencyCode];
 
-        if($originCurrency->rate == 0 || $originCurrency->updated_at->startOfDay() != Carbon::now()->startOfDay()){
-            CurrencyRates::getRates();
-            self::loadContainer();
-            $originCurrency = self::$container[$originCurrencyCode];
+        if($originCurrencyCode != self::DEFAULT_CURRENCY_CODE){
+            if($originCurrency->rate == 0 || $originCurrency->updated_at->startOfDay() != Carbon::now()->startOfDay()){
+                CurrencyRates::getRates();
+                self::loadContainer();
+                $originCurrency = self::$container[$originCurrencyCode];
+            }
         }
+        
 
         if(is_null($targetCurrencyCode)){
-            $targetCurrencyCode = session('currency', 'EUR');
+            $targetCurrencyCode = self::getCurrencyFromSession();
         }
         $targetCurrency = self::$container[$targetCurrencyCode];
 
@@ -49,7 +67,8 @@ class CurrencyConversion {
 
     public static function getCurrencySymbol(){
         self::loadContainer();
-        $currency = self::$container[session('currency', 'EUR')];
+        $currencyFromSession = self::getCurrencyFromSession();
+        $currency = self::$container[$currencyFromSession];
         return $currency->symbol;
     }
 

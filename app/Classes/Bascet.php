@@ -4,6 +4,8 @@ namespace App\Classes;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Services\Currency\CurrencyConversion;
+use Illuminate\Support\Facades\Auth;
 
 class Bascet
 {
@@ -17,8 +19,11 @@ class Bascet
                 if(Auth::check()){
                     $data['user_id'] = Auth::id();
                 }
-                $this->order = Order::create($data);
+                $data['currency_id'] = CurrencyConversion::getCurrentCurrencyFromSession()->id;
+                $this->order = new Order($data);
                 session(['order' => $this->order]);
+            }else{
+                $this->order = $order;
             }
     }
 
@@ -26,38 +31,37 @@ class Bascet
         return $this->order;
     }
 
-    protected function getPivotRow($product){
-        return $this->order->products()->where('product_id', $product->id)->first()->pivot;
-    }
+    // protected function getPivotRow($product){
+    //     return $this->order->products()->where('product_id', $product->id)->first()->pivot;
+    // }
 
     public function addBascet(Product $product){
-        if($this->order->products->contains($product->id)){
-            $pivotRow = $this->getPivotRow($product);
-            $pivotRow->count++;
-            if($pivotRow->count > $product->count){
+        if($this->order->products->contains($product)){
+            $pivotRow = $this->order->products->where('id', $product->id)->first();
+            
+            if($pivotRow->countInOrder >= $product->count){
                 session()->flash('warning', 'Максимальное количество выбранного товара - ' . $product->name);
                 return false;
             }
-            
-            $pivotRow->update();
+            $pivotRow->countInOrder++;
         }else{
-            $this->order->products()->attach($product->id);
+            $product->countInOrder = 1;
+            $this->order->products->push($product);
         }
-        Order::changeFullPrice($product->price);
+        //Order::changeFullPrice($product->price);
         session()->flash('success', 'Добавлен товар ' . $product->name);
     }
 
     public function removeBascet(Product $product){
-        Order::changeFullPrice(-$product->price);
-        if($this->order->products->contains($product->id)){
-            $pivotRow = $this->getPivotRow($product);
-            if($pivotRow->count < 2){
-                session()->forget('full_order_sum');
-                $this->order->removeOrder($product->id);
-                $this->order->products()->detach($product->id);   
+        //Order::changeFullPrice(-$product->price);
+        if($this->order->products->contains($product)){
+            $pivotRow = $this->order->products->where('id', $product->id)->first();
+            if($pivotRow->countInOrder < 2){
+                //session()->forget('full_order_sum');
+                //$this->order->removeOrder($product->id);
+                $this->order->products->pop($product);
             }else
-                $pivotRow->count--;
-                $pivotRow->update();
+                $pivotRow->countInOrder--;
         }
         session()->flash('warning', 'Удален товар ' . $product->name);
     }

@@ -33,8 +33,12 @@ class Order extends Model
         session(['full_order_sum' => $sum]);
     }
 
-    public static function getFullPrice(){
-        return session('full_order_sum', 0);
+    public function getFullPrice(){
+        $sum = 0;
+        foreach($this->products as $product){
+            $sum +=$product->price * $product->countInOrder;
+        }
+        return $sum;
     }
 
     public function saveOrder($name, $phone){

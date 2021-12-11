@@ -17,10 +17,11 @@ class BascetNotEmpty
      */
     public function handle(Request $request, Closure $next)
     {
-        $orderId = session('orderId');
-        if(!is_null($orderId) && Order::getFullPrice() > 0){
+        $order = session('order');
+        if(!is_null($order)){
             return $next($request);
         }
+        session()->forget('order');
         session()->flash('warning', 'Ваша корзина пуста');
         return redirect()->route('index');
     }

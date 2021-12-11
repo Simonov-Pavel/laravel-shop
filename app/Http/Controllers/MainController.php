@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Config;
 class MainController extends Controller
 {
     public function index(Request $request){
+        //session()->forget('order');
         $productsQuery = Product::with('category');
         if($request->filled('price_from')){
             $productsQuery->where('price', '>=', $request->price_from);
