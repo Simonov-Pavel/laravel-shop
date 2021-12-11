@@ -16,6 +16,10 @@ class Order extends Model
         return $this->belongsToMany(Product::class)->withPivot('count', 'price')->withTimestamps();
     }
 
+    public function currency(){
+        return $this->belongsToMany(Currency::class);
+    }
+
     public function scopeActive($query){
         return $query->where('status', 1);
     }
@@ -43,20 +47,23 @@ class Order extends Model
 
     public function saveOrder($name, $phone){
         
-        if($this->status == 0){
             $this->name = $name;
             $this->phone = $phone;
             if(auth()->user()) $this->user_id = auth()->user()->id;
             $this->status = 1;
+            $this->sum = $this->getFullPrice();-
+            $products = $this->products;
             $this->save();
-            session()->forget('orderId');
-            session()->forget('full_order_sum');
+            foreach($products as $productInOrder){
+                $this->products()->attach($productInOrder, [
+                    'count' => $productInOrder->countInOrder,
+                    'price' => $productInOrder->price,
+                ]);
+            }
+            session()->forget('order');
+            //session()->forget('full_order_sum');
             session()->flash('success', 'Ваш заказ в обработке');
             return true;
-        }else{
-            session()->flash('warning', 'ERROR!!!');
-            return false; 
-        } 
     }
 
     public function removeOrder($productId){
