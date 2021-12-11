@@ -10,7 +10,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'phone', 'status', 'user_id'];
+    protected $fillable = ['name', 'phone', 'status', 'user_id', 'currency_id', 'sum'];
 
     public function products(){
         return $this->belongsToMany(Product::class)->withPivot('count')->withTimestamps();
